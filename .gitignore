@@ -52,6 +52,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+
 # macOS
 # General
 .DS_Store
@@ -81,6 +82,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
 # Windows
 # Windows thumbnail cache files
 Thumbs.db
@@ -105,6 +107,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
 
 # Linux
 *~
