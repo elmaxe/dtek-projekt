@@ -1,0 +1,2 @@
+# algosynth
+Algorithmically controllable synt
