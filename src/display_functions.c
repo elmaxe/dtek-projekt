@@ -43,7 +43,7 @@ void quicksleep(int cyc) {
    There's one parameter: the address to read and display.
 
    Note: When you use this function, you should comment out any
-   repeated calls to display_image; display_image overwrites
+   repeated calls to display_buffer; display_buffer overwrites
    about half of the digits shown by display_debug.
 */
 void display_debug( volatile int * const addr )
@@ -52,7 +52,7 @@ void display_debug( volatile int * const addr )
   display_string( 2, "Data" );
   num32asc( &textbuffer[1][6], (int) addr );
   num32asc( &textbuffer[2][6], *addr );
-  display_update();
+  display_textbuffer();
 }
 
 uint8_t spi_send_recv(uint8_t data) {
@@ -62,7 +62,7 @@ uint8_t spi_send_recv(uint8_t data) {
 	return SPI2BUF;
 }
 
-void display_init(void) {
+void display_init() {
   DISPLAY_CHANGE_TO_COMMAND_MODE;
 	quicksleep(10);
 	DISPLAY_ACTIVATE_VDD;
@@ -107,7 +107,21 @@ void display_string(int line, char *s) {
 			textbuffer[line][i] = ' ';
 }
 
-void display_image(const uint8_t *data) {
+void pixelbuffer_to_buffer() {
+	int page, byte, bit;
+	char tmp;
+	for(page = 0; page < 4; page++) {
+		for(byte = 0; byte < 128; byte++) {
+			tmp = 0;
+			for(bit = 0; bit < 8; bit++) {
+				tmp |= (pixelbuffer[byte][page * 8 + bit] & 1) << bit;
+			}
+			buffer[page][byte] = tmp;
+		}
+	}
+}
+
+void display_buffer() {
 	int i, j;
 
 	for(i = 0; i < 4; i++) {
@@ -122,11 +136,11 @@ void display_image(const uint8_t *data) {
 		DISPLAY_CHANGE_TO_DATA_MODE;
 
 		for(j = 0; j < 128; j++)
-			spi_send_recv(0xFF);
+			spi_send_recv(buffer[i][j]);
 	}
 }
 
-void display_update(void) {
+void display_textbuffer() {
 	int i, j, k;
 	int c;
 	for(i = 0; i < 4; i++) {

@@ -56,18 +56,16 @@ int main(void) {
 
 	display_init();
 	display_string(0, "Dinosaur Run");
-	display_string(1, "M.Wesslen");
-	display_string(2, "A.Elmarsson");
+	display_string(1, "by M.Wesslen");
+	display_string(2, "and A.Elmarsson");
 	display_string(3, "Press any button");
-	display_update();
+	display_textbuffer();
 
-	//display_image(icon);
-
-	labinit(); /* Do any lab-specific initialization */
+	init();
 
 	while( 1 )
 	{
-	  labwork(); /* Do lab-specific things again and again */
+	  loop(); /* Do loop again and again */
 	}
 	return 0;
 }

@@ -14,22 +14,20 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "mipslab.h"  /* Declatations for these labs */
 
-struct Player {
+typedef struct {
   int x;
   int y;
   int dy;
-};
-
-char textstring[] = "text, more text, and even more text!";
+} Dino;
 
 /* Interrupt Service Routine */
-void user_isr( void ) {
+void user_isr() {
   // interrupt
   IFSCLR(0) = 0x100;
 }
 
 /* Lab-specific initialization goes here */
-void labinit( void )
+void init()
 {
   // Init leds
   TRISE &= ~0xFF;
@@ -52,9 +50,10 @@ void labinit( void )
 }
 
 /* This function is called repetitively from the main program */
-void labwork(void) {
+void loop() {
   if (getbtns()) {
-    display_image(icon);
+    pixelbuffer_to_buffer();
+    display_buffer();
   }
-  quicksleep(50);
+  quicksleep(500);
 }
