@@ -18,7 +18,7 @@ struct Player {
   int x;
   int y;
   int dy;
-}
+};
 
 char textstring[] = "text, more text, and even more text!";
 
