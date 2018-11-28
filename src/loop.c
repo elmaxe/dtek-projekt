@@ -14,7 +14,13 @@
 typedef struct {
   int x;
   int y;
-  int dy;
+  int width;
+  int height;
+  char graphic[][];
+} Sprite;
+
+typedef struct {
+  Sprite sprite;
 } Dino;
 
 /* Interrupt Service Routine */
