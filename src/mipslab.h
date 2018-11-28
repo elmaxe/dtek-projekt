@@ -17,7 +17,6 @@ uint8_t spi_send_recv(uint8_t data);
 /* Declare lab-related functions from mipslabfunc.c */
 char * itoaconv( int num );
 void labwork(void);
-int nextprime( int inval );
 void quicksleep(int cyc);
 
 /* Declare display_debug - a function to help debugging.
@@ -45,8 +44,6 @@ extern char textbuffer[4][16];
    Note: Since we declare these functions here,
    students must define their functions with the exact types
    specified in the laboratory instructions. */
-/* Written as part of asm lab: delay, time2string */
-void delay(int);
 /* Written as part of i/o lab: getbtns, getsw, enable_interrupt */
 int getbtns(void);
 int getsw(void);

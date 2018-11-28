@@ -25,19 +25,9 @@ unsigned int timeoutcount = 0;
 
 char textstring[] = "text, more text, and even more text!";
 
-/* Declare helper function */
-void ledcount(void);
-void update_time(void);
-
 /* Interrupt Service Routine */
 void user_isr( void ) {
-  timeoutcount++;
-  if (timeoutcount >= 10){
-    display_string( 3, textstring );
-    display_update();
-    ledcount();
-    timeoutcount = 0;
-  }
+  // interrupt
   IFSCLR(0) = 0x100;
 }
 
@@ -45,8 +35,8 @@ void user_isr( void ) {
 void labinit( void )
 {
   // Init leds
-  *myTRISE &= ~0xFF;
-  *myPORTE &= ~0xFF;
+  TRISE &= ~0xFF;
+  PORTE &= ~0xFF;
 
   // Init sws and btns
   TRISDSET = 0x7F<<5;
@@ -65,37 +55,6 @@ void labinit( void )
 }
 
 /* This function is called repetitively from the main program */
-void labwork( void ) {
-  update_time();
-  prime = nextprime( prime );
-  display_string( 0, itoaconv( prime ) );
-  display_update();
-}
-
-void ledcount(void){
-  tickcount++;
-  *myPORTE &= ~0xFF;
-  *myPORTE |= tickcount;
-}
-
-void update_time(void){
-  int btns = getbtns();
-  if (btns > 0){
-    int btn2 = btns & 0x1;
-    int btn3 = (btns >> 1) & 0x1;
-    int btn4 = (btns >> 2) & 0x1;
-    int sw = getsw();
-    if (btn2){
-      mytime &= ~0xF0;
-      mytime |= (sw << 4);
-    }
-    if (btn3){
-      mytime &= ~0xF00;
-      mytime |= (sw << 8);
-    }
-    if (btn4){
-      mytime &= ~0xF000;
-      mytime |= (sw << 12);
-    }
-  }
+void labwork(void) {
+  quicksleep(50);
 }
