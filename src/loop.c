@@ -14,6 +14,11 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "mipslab.h"  /* Declatations for these labs */
 
+struct Player {
+  int x;
+  int y;
+  int dy;
+}
 
 char textstring[] = "text, more text, and even more text!";
 
@@ -48,7 +53,7 @@ void labinit( void )
 
 /* This function is called repetitively from the main program */
 void labwork(void) {
-  if (getbtns() == 0x4) {
+  if (getbtns()) {
     display_image(icon);
   }
   quicksleep(50);
