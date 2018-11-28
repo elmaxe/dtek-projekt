@@ -48,5 +48,8 @@ void labinit( void )
 
 /* This function is called repetitively from the main program */
 void labwork(void) {
+  if (getbtns() == 0x4) {
+    display_image(icon);
+  }
   quicksleep(50);
 }
