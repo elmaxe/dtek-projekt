@@ -55,7 +55,7 @@ int main(void) {
 	SPI2CONSET = 0x8000;
 
 	display_init();
-	display_string(0, "Title");
+	display_string(0, "Dinosaur Run");
 	display_string(1, "M.Wesslen");
 	display_string(2, "A.Elmarsson");
 	display_string(3, "Press any button");
