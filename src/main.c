@@ -1,15 +1,15 @@
-/* mipslabmain.c
+/* main.c
 
-   This file written 2015 by Axel Isaksson,
-   modified 2015, 2017 by F Lundevall
+   This file was based on another file written 2015 by Axel Isaksson
+	 and modified 2015 and 2017 by F. Lundevall.
 
-   Latest update 2017-04-21 by F Lundevall
+	 Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING */
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "mipslab.h"  /* Declatations for these labs */
+#include "header.h"  /* Declatations for these labs */
 
 int main(void) {
         /*

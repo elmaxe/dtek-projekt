@@ -1,13 +1,16 @@
-/* mipslabfunc.c
-   This file written 2015 by F Lundevall
-   Some parts are original code written by Axel Isaksson
-	 Edited by
+/* display_functions.c
+
+   This file was based on another file written by Axel Isaksson
+	 and modified by F. Lundevall.
+
+	 Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING */
 
+
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "mipslab.h"  /* Declatations for these labs */
+#include "header.h"  /* Declatations for these labs */
 
 /* Declare a helper function which is local to this file */
 static void num32asc( char * s, int );

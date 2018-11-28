@@ -1,6 +1,13 @@
+/* io_functions.c
+
+	 Written 2018-11- by M. Wesslén and A. Elmarsson.
+
+   For copyright and licensing, see file COPYING */
+
+
 #include <stdint.h>
 #include <pic32mx.h>
-#include "mipslab.h"
+#include "header.h"
 
 int getsw( void ){
   unsigned int input = PORTD;

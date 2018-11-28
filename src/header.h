@@ -1,9 +1,9 @@
-/* mipslab.h
-   Header file for all labs.
-   This file written 2015 by F Lundevall
-   Some parts are original code written by Axel Isaksson
+/* header.h
 
-   Latest update 2015-08-28 by F Lundevall
+   This file was based on another file written by Axel Isaksson
+	 and modified by F. Lundevall.
+
+	 Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING */
 

@@ -1,13 +1,9 @@
-  # labwork.S
-  # Written 2015-2017 by F Lundevall
-  # Edited 2018-11-28 by M Wesslén
-  # Skeleton file for IS1200/IS1500 lab 1.
+  # enable_interrupt.S
+  # Based on a file written 2015-2017 by F Lundevall.
+  # Edited 2018-11- by M. Wesslén and A. Elmarsson.
+	# For copyright and licensing, see file COPYING.
   # The macros PUSH and POP are in the public domain.
-  # Please add your own code at the end of the file.
 
-  #
-  # Please keep the two macros PUSH and POP unchanged
-  #
 .macro	PUSH reg
 	addi	$sp,$sp,-4
 	sw	\reg,0($sp)
