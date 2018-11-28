@@ -14,14 +14,6 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "mipslab.h"  /* Declatations for these labs */
 
-volatile unsigned int* myTRISE = (int*)0xbf886100;
-volatile unsigned int* myPORTE = (int*)0xbf886110;
-
-int mytime = 0x5957;
-int prime = 1234567;
-
-unsigned char tickcount = 0;
-unsigned int timeoutcount = 0;
 
 char textstring[] = "text, more text, and even more text!";
 
