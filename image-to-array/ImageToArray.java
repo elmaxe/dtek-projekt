@@ -42,11 +42,11 @@ class ImageToArray {
       for (int y = 0; y < this.height; y++) {
         int pixel = this.image.getRGB(x, y);
         if (pixel == -16777216) { //Black
-          pixel = 0;
+          pixel = 1;
         } else if (pixel == 0) { //Alpha = 0
-          pixel = 1;
+          pixel = 0;
         } else {
-          pixel = 1;
+          pixel = 0;
         }
         this.finalArray[x][y] = pixel;
       }
@@ -71,17 +71,17 @@ class ImageToArray {
       BufferedWriter writer = new BufferedWriter(new FileWriter(this.output));
       writer.write("{");
       writer.newLine();
-      for (int y = 0; y < this.height; y++) {
+      for (int x = 0; x < this.width; x++) {
         writer.write("{");
-        for (int x = 0; x < this.width; x++) {
-          if (x == this.width - 1) {
+        for (int y = 0; y < this.height; y++) {
+          if (y == this.height - 1) {
             writer.write(this.finalArray[x][y] + "");
           } else {
             writer.write(this.finalArray[x][y] + ", ");
           }
         }
 
-        if (y == this.height - 1) {
+        if (x == this.width - 1) {
           writer.write("}");
           writer.newLine();
         } else {
@@ -93,7 +93,4 @@ class ImageToArray {
     writer.close();
     System.out.println("Image written to " + this.output);
   }
-
-
-
 }
