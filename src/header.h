@@ -1,9 +1,9 @@
 /* header.h
 
    This file was based on another file written by Axel Isaksson
-	 and modified by F. Lundevall.
+   and modified by F. Lundevall.
 
-	 Edited 2018-11- by M. Wesslén and A. Elmarsson.
+   Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING */
 
@@ -13,7 +13,6 @@ void display_init();
 void display_string(int line, char *s);
 void display_textbuffer();
 uint8_t spi_send_recv(uint8_t data);
-
 void pixelbuffer_to_buffer();
 
 /* Declare lab-related functions from mipslabfunc.c */

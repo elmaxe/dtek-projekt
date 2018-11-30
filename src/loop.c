@@ -2,7 +2,7 @@
 
    This file was based on another file written by F. Lundevall.
 
-	 Edited 2018-11- by M. Wesslén and A. Elmarsson.
+   Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING */
 
@@ -10,18 +10,6 @@
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "header.h"  /* Declatations for these labs */
-
-typedef struct {
-  int x;
-  int y;
-  int width;
-  int height;
-  char graphic[][];
-} Sprite;
-
-typedef struct {
-  Sprite sprite;
-} Dino;
 
 /* Interrupt Service Routine */
 void user_isr() {
