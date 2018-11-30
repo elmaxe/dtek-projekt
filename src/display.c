@@ -5,12 +5,12 @@
 
    Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
-   For copyright and licensing, see file COPYING */
-
+   For copyright and licensing, see file COPYING
+*/
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "header.h"  /* Declatations for these labs */
+#include "display.h"
 
 /* Declare a helper function which is local to this file */
 static void num32asc( char * s, int );
@@ -26,15 +26,6 @@ static void num32asc( char * s, int );
 
 #define DISPLAY_TURN_OFF_VDD (PORTFSET = 0x40)
 #define DISPLAY_TURN_OFF_VBAT (PORTFSET = 0x20)
-
-/* quicksleep:
-   A simple function to create a small delay.
-   Very inefficient use of computing resources,
-   but very handy in some special cases. */
-void quicksleep(int cyc) {
-  int i;
-  for(i = cyc; i > 0; i--);
-}
 
 /* display_debug
    A function to help debugging.

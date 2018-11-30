@@ -4,12 +4,13 @@
 
    Edited 2018-11- by M. Wesslén and A. Elmarsson.
 
-   For copyright and licensing, see file COPYING */
-
+   For copyright and licensing, see file COPYING
+*/
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "header.h"  /* Declatations for these labs */
+#include "loop.h"
+#include "display.h"
 
 /* Interrupt Service Routine */
 void user_isr() {
@@ -47,4 +48,13 @@ void loop() {
     display_buffer();
   }
   quicksleep(500);
+}
+
+/* quicksleep:
+   A simple function to create a small delay.
+   Very inefficient use of computing resources,
+   but very handy in some special cases. */
+void quicksleep(int cyc) {
+  int i;
+  for(i = cyc; i > 0; i--);
 }

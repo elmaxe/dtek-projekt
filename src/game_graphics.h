@@ -2,15 +2,16 @@
 
    Written 2018-11- by M. Wesslén and A. Elmarsson.
 
-   For copyright and licensing, see file COPYING */
+   For copyright and licensing, see file COPYING
+*/
 
 typedef struct Sprite {
   int x;
   int y;
   int width;
   int height;
-  int num_graphics
-  char graphics[][];
+  int num_graphics;
+  char graphics[10][10];
 } Sprite;
 
 typedef struct Dino {

@@ -1,8 +1,9 @@
-/* game_logic.c
+/* input.h
 
    Written 2018-11- by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING
 */
 
-#include "game_graphics.h"
+int getbtns();
+int getsw();
