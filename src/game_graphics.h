@@ -11,7 +11,7 @@ typedef struct Sprite {
   int width;
   int height;
   int num_graphics;
-  char graphics[10][10];
+  char* graphics[];
 } Sprite;
 
 typedef struct Dino {
