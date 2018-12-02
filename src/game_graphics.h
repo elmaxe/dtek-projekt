@@ -10,8 +10,7 @@ typedef struct Sprite {
   int y;
   int width;
   int height;
-  int num_graphics;
-  char* graphics[];
+  char* graphic;
 } Sprite;
 
 typedef struct Dino {
@@ -30,3 +29,5 @@ typedef struct Cactus {
   Sprite sprite;
   int x_speed;
 } Cactus;
+
+void add_graphic_to_pixelbuffer(Sprite sprite);

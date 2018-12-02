@@ -11,6 +11,7 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "loop.h"
 #include "display.h"
+#include "game_graphics.h"
 
 /* Interrupt Service Routine */
 void user_isr() {
@@ -44,6 +45,29 @@ void init()
 /* This function is called repetitively from the main program */
 void loop() {
   if (getbtns()) {
+    // Test code
+    char bird[13][9] = {
+    {0, 0, 0, 0, 1, 0, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0, 0, 0},
+    {1, 1, 0, 0, 1, 1, 0, 0, 0},
+    {1, 1, 1, 1, 1, 1, 1, 0, 0},
+    {0, 0, 1, 1, 1, 1, 1, 1, 1},
+    {0, 0, 1, 1, 1, 1, 1, 1, 1},
+    {0, 0, 0, 0, 1, 1, 1, 1, 1},
+    {0, 0, 0, 0, 0, 1, 1, 1, 1},
+    {0, 0, 0, 0, 0, 0, 1, 1, 1},
+    {0, 0, 0, 0, 0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 1, 0}
+    };
+    Sprite sprite;
+    sprite.x = 0;
+    sprite.y = 0;
+    sprite.width = 13;
+    sprite.height = 9;
+    sprite.graphic = &bird;
+    add_graphic_to_pixelbuffer(sprite);
     pixelbuffer_to_buffer();
     display_buffer();
   }
