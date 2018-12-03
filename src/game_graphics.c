@@ -13,7 +13,6 @@
 void add_graphic_to_pixelbuffer(Sprite sprite) {
   int x;
   int y;
-  char sprite_graphic[sprite.width][sprite.height];
   for (x = 0; x < sprite.width; x++) {
     for (y = 0; y < sprite.height; y++) {
       pixelbuffer[sprite.x + x][sprite.y + y] |= sprite.graphic[x][y];

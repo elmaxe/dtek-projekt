@@ -14,6 +14,8 @@ extern char pixelbuffer[128][32];
 /* Declare display buffer*/
 extern char buffer[4][128];
 
+extern const char const bird[16][16];
+
 void display_buffer();
 void display_init();
 void display_string(int line, char *s);

@@ -46,27 +46,18 @@ void init()
 void loop() {
   if (getbtns()) {
     // Test code
-    char bird[13][9] = {
-    {0, 0, 0, 0, 1, 0, 0, 0, 0},
-    {0, 0, 0, 1, 1, 0, 0, 0, 0},
-    {0, 0, 1, 1, 1, 0, 0, 0, 0},
-    {0, 0, 1, 1, 1, 0, 0, 0, 0},
-    {1, 1, 0, 0, 1, 1, 0, 0, 0},
-    {1, 1, 1, 1, 1, 1, 1, 0, 0},
-    {0, 0, 1, 1, 1, 1, 1, 1, 1},
-    {0, 0, 1, 1, 1, 1, 1, 1, 1},
-    {0, 0, 0, 0, 1, 1, 1, 1, 1},
-    {0, 0, 0, 0, 0, 1, 1, 1, 1},
-    {0, 0, 0, 0, 0, 0, 1, 1, 1},
-    {0, 0, 0, 0, 0, 0, 1, 1, 0},
-    {0, 0, 0, 0, 0, 0, 0, 1, 0}
-    };
     Sprite sprite;
-    sprite.x = 0;
+    sprite.x = 10;
     sprite.y = 0;
     sprite.width = 13;
     sprite.height = 9;
-    sprite.graphic = &bird;
+    int x;
+    int y;
+    for (x = 0; x < 16; x++) {
+      for (y = 0; y < 16; y++) {
+        sprite.graphic[x][y] = bird[x][y];
+      }
+    }
     add_graphic_to_pixelbuffer(sprite);
     pixelbuffer_to_buffer();
     display_buffer();
