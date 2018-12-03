@@ -10,7 +10,7 @@
 #include "game_graphics.h"
 #include "display.h"
 
-void add_graphic_to_pixelbuffer(Sprite sprite) {
+void add_graphic_to_pixelbuffer(struct Sprite sprite) {
   int x;
   int y;
   for (x = 0; x < sprite.width; x++) {

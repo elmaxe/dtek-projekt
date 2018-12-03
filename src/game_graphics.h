@@ -5,6 +5,10 @@
    For copyright and licensing, see file COPYING
 */
 
+typedef struct Empty {
+  char (*graphic)[16][16];
+} Empty;
+
 typedef struct Sprite {
   int x;
   int y;
