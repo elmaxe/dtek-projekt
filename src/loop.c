@@ -12,6 +12,8 @@
 #include "loop.h"
 #include "display.h"
 #include "game_graphics.h"
+#include "game_logic.h"
+#include "data.h"
 
 /* Interrupt Service Routine */
 void user_isr() {
@@ -44,17 +46,14 @@ void init()
 
 /* This function is called repetitively from the main program */
 void loop() {
-  if (getbtns()) {
-    // Test code
-    Sprite sprite;
-    sprite.x = 10;
-    sprite.y = 0;
-    sprite.width = 13;
-    sprite.height = 9;
-    sprite.graphic = &bird;
+  if (getbtns() == 0x4) {
     add_graphic_to_pixelbuffer(sprite);
     pixelbuffer_to_buffer();
     display_buffer();
+    move(&sprite, 3);
+  }
+  if (getbtns() == 0x2) {
+    //move(&sprite);
   }
   quicksleep(500);
 }
