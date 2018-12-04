@@ -5,6 +5,10 @@
    For copyright and licensing, see file COPYING
 */
 
+//Screen dimensions in pixels
+#define SCREEN_HEIGHT 32
+#define SCREEN_WIDTH 128
+
 /* Declare bitmap array containing font */
 extern const uint8_t const font[128*8];
 /* Declare text buffer for display output */

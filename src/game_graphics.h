@@ -24,14 +24,16 @@ typedef struct Dino {
   int y_accel;
 } Dino;
 
-typedef struct Bird {
+//Cacti, birds etc.
+typedef struct Obstacle {
   Sprite sprite;
   int x_speed;
-} Bird;
+} Obstacle;
 
-typedef struct Cactus {
+typedef struct Ground {
   Sprite sprite;
   int x_speed;
-} Cactus;
+} Ground;
+
 
 void add_graphic_to_pixelbuffer(Sprite sprite);

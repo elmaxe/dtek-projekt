@@ -5,10 +5,12 @@
    For copyright and licensing, see file COPYING
 */
 
+#include <stdint.h>   /* Declarations of uint_32 and the like */
+#include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "game_graphics.h"
 #include "game_logic.h"
 #include "data.h"
-
+#include "display.h"
 // Test code
 void game_init() {
   sprite.x = 10;
@@ -27,9 +29,9 @@ void move(struct Sprite *spr, int dir) {
   } else if (dir == 1) {
     spr->x = (spr->x - 1);
   } else if (dir == 2) {
-    spr->y = (spr->y - 1);
+    spr->y = (spr->y - 1) % SCREEN_HEIGHT;
   } else if (dir == 3) {
-    spr->y = (spr->y + 1);
+    spr->y = (spr->y + 1) % SCREEN_HEIGHT;
   }
 
 }
