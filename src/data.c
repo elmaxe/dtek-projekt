@@ -15,10 +15,10 @@
 #include "game_graphics.h"
 
 char textbuffer[NUM_PAGES][16];
-char pixelbuffer[SCREEN_WIDTH][SCREEN_HEIGHT];
-char buffer[NUM_PAGES][SCREEN_WIDTH];
+uint8_t pixelbuffer[SCREEN_WIDTH][SCREEN_HEIGHT];
+uint8_t buffer[NUM_PAGES][SCREEN_WIDTH];
 
-char bird_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
+uint8_t bird_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 0, 0, 0, 1, 0, 0, 0, 0},
   {0, 0, 0, 1, 1, 0, 0, 0, 0},
   {0, 0, 1, 1, 1, 0, 0, 0, 0},
@@ -34,7 +34,7 @@ char bird_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 0, 0, 0, 0, 0, 0, 1, 0}
 };
 
-char dino_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
+uint8_t dino_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0},
   {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0},
   {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0},
@@ -53,7 +53,7 @@ char dino_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 };
 
-char cactus_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
+uint8_t cactus_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0},
   {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -62,7 +62,7 @@ char cactus_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0}
 };
 
-char ground_graphic[SCREEN_WIDTH][4] = {
+uint8_t ground_graphic[SCREEN_WIDTH][4] = {
   {1, 0, 0, 0},
   {1, 0, 0, 0},
   {1, 0, 0, 1},

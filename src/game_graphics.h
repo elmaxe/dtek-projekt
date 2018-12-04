@@ -17,7 +17,7 @@ typedef enum Direction {
 typedef struct Sprite {
   int x, y;
   int width, height;
-  char (*graphic)[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE];
+  uint8_t (*graphic)[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE];
 } Sprite;
 
 typedef struct Dino {
@@ -42,7 +42,7 @@ typedef struct Ground {
   int x, y;
   int width, height;
   int x_speed;
-  char (*graphic)[SCREEN_WIDTH][4];
+  uint8_t (*graphic)[SCREEN_WIDTH][4];
 } Ground;
 
 typedef struct Obstacles {

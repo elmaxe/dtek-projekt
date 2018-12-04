@@ -104,7 +104,7 @@ void display_string(int line, char *s) {
 
 void pixelbuffer_to_buffer() {
   int page, byte, bit;
-  char tmp;
+  uint8_t tmp;
   for(page = 0; page < NUM_PAGES; page++) {
     for(byte = 0; byte < SCREEN_WIDTH; byte++) {
       tmp = 0;
