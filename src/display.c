@@ -89,29 +89,29 @@ void display_init() {
 void display_string(int line, char *s) {
   int i;
   if(line < 0 || line >= 4)
-  return;
+    return;
   if(!s)
-  return;
+    return;
 
   for(i = 0; i < 16; i++)
-  if(*s) {
-  textbuffer[line][i] = *s;
-  s++;
-  } else
-  textbuffer[line][i] = ' ';
+    if(*s) {
+      textbuffer[line][i] = *s;
+      s++;
+    } else
+      textbuffer[line][i] = ' ';
 }
 
 void pixelbuffer_to_buffer() {
   int page, byte, bit;
   char tmp;
   for(page = 0; page < 4; page++) {
-  for(byte = 0; byte < 128; byte++) {
-  tmp = 0;
-  for(bit = 0; bit < 8; bit++) {
-  tmp |= (pixelbuffer[byte][page * 8 + bit] & 1) << bit;
-  }
-  buffer[page][byte] = tmp;
-  }
+    for(byte = 0; byte < 128; byte++) {
+      tmp = 0;
+      for(bit = 0; bit < 8; bit++) {
+        tmp |= (pixelbuffer[byte][page * 8 + bit] & 1) << bit;
+      }
+      buffer[page][byte] = tmp;
+    }
   }
 }
 
@@ -119,18 +119,18 @@ void display_buffer() {
   int i, j;
 
   for(i = 0; i < 4; i++) {
-  DISPLAY_CHANGE_TO_COMMAND_MODE;
+    DISPLAY_CHANGE_TO_COMMAND_MODE;
 
-  spi_send_recv(0x22);
-  spi_send_recv(i);
+    spi_send_recv(0x22);
+    spi_send_recv(i);
 
-  spi_send_recv(0x0);
-  spi_send_recv(0x10);
+    spi_send_recv(0x0);
+    spi_send_recv(0x10);
 
-  DISPLAY_CHANGE_TO_DATA_MODE;
+    DISPLAY_CHANGE_TO_DATA_MODE;
 
-  for(j = 0; j < 128; j++)
-  spi_send_recv(buffer[i][j]);
+    for(j = 0; j < 128; j++)
+    spi_send_recv(buffer[i][j]);
   }
 }
 
@@ -138,23 +138,23 @@ void display_textbuffer() {
   int i, j, k;
   int c;
   for(i = 0; i < 4; i++) {
-  DISPLAY_CHANGE_TO_COMMAND_MODE;
-  spi_send_recv(0x22);
-  spi_send_recv(i);
+    DISPLAY_CHANGE_TO_COMMAND_MODE;
+    spi_send_recv(0x22);
+    spi_send_recv(i);
 
-  spi_send_recv(0x0);
-  spi_send_recv(0x10);
+    spi_send_recv(0x0);
+    spi_send_recv(0x10);
 
-  DISPLAY_CHANGE_TO_DATA_MODE;
+    DISPLAY_CHANGE_TO_DATA_MODE;
 
-  for(j = 0; j < 16; j++) {
-  c = textbuffer[i][j];
-  if(c & 0x80)
-  continue;
+    for(j = 0; j < 16; j++) {
+      c = textbuffer[i][j];
+      if(c & 0x80)
+        continue;
 
-  for(k = 0; k < 8; k++)
-  spi_send_recv(font[c*8 + k]);
-  }
+      for(k = 0; k < 8; k++)
+        spi_send_recv(font[c*8 + k]);
+    }
   }
 }
 
