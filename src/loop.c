@@ -48,9 +48,23 @@ void init()
 
 /* This function is called repetitively from the main program */
 void loop() {
-  if ((getbtns() & 0x4) >> 2) {
+  if (GAME_STATE == 0) {
+    display_string(0, "Dinosaur Run");
+    display_string(1, "by M.Wesslen");
+    display_string(2, "and A.Elmarsson");
+    display_string(3, "Press any button");
+    display_textbuffer();
+  } else {
     update_game_state();
     update_graphics();
+  }
+
+  if ((getbtns() & 0x4) >> 2) {
+    GAME_STATE = 1;
+  } else if ((getbtns() & 0x2) >> 1) {
+    GAME_STATE = 1;
+  } else if (getbtns() & 0x1) {
+    add_obstacle(CACTUS, -1);
   }
   quicksleep(500);
 }
