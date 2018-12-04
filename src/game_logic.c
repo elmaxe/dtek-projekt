@@ -12,6 +12,9 @@
 #include "data.h"
 #include "display.h"
 
+int GAME_STATE = 0;
+int DAY = 1;
+
 //TODO Fix so that argument 1 is an "object" (cacti, bird etc)
 //and not a sprite
 //Dont think this function will be needed
@@ -49,18 +52,6 @@ void move_obstacle(Obstacle *obs) {
 
 void move_ground(Ground *gr) {
   gr->x += gr->x_speed;
-}
-
-void update_game_state() {
-  //Move ground
-  move_ground(&ground);
-  //Move obstacles
-  int i;
-  for (i = 0; i < obstacles.num_obstacles; i++) {
-    if (obstacles.obstacles[i].on_screen) {
-      move_obstacle(&obstacles.obstacles[i]);
-    }
-  }
 }
 
 void init_obstacle(Obstacle *obs, int x_speed){
@@ -115,14 +106,19 @@ void remove_obstacles() {
   }
 }
 
+void update_game_state() {
+  //Move ground
+  move_ground(&ground);
+  //Move obstacles
+  int i;
+  for (i = 0; i < obstacles.num_obstacles; i++) {
+    if (obstacles.obstacles[i].on_screen) {
+      move_obstacle(&obstacles.obstacles[i]);
+    }
+  }
+}
+
 void game_init() {
-  //Set up bird test
-  bird.sprite.x = 127;
-  bird.sprite.y = 0;
-  bird.sprite.width = 13;
-  bird.sprite.height = 9;
-  bird.sprite.graphic = &bird_graphic;
-  bird.x_speed = -1;
   //Set up ground
   ground.x = 0;
   ground.y = SCREEN_HEIGHT - 4;

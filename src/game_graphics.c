@@ -45,7 +45,9 @@ void update_graphics() {
   for (i = 0; i < obstacles.num_obstacles; i++) {
     add_graphic_to_pixelbuffer(obstacles.obstacles[i].sprite);
   }
-  //invert_pixelbuffer();
+  if (DAY) {
+    invert_pixelbuffer();
+  }
   pixelbuffer_to_buffer();
   clear_pixelbuffer();
   display_buffer();
