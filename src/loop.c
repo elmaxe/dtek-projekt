@@ -41,6 +41,8 @@ void init()
   IPCSET(2) = 0x1F; // Set priority
   T2CONSET = 0x8000; // Start timer
   enable_interrupt();
+
+  game_init();
   return;
 }
 
@@ -48,13 +50,14 @@ void init()
 void loop() {
   if (getbtns() == 0x4) {
     add_graphic_to_pixelbuffer(sprite);
+    add_graphic_to_pixelbuffer(sprite);
+    invert_pixelbuffer();
     pixelbuffer_to_buffer();
+    clear_pixelbuffer();
     display_buffer();
-    move(&sprite, 3);
+    move(&sprite, LEFT);
   }
-  if (getbtns() == 0x2) {
-    //move(&sprite);
-  }
+
   quicksleep(500);
 }
 

@@ -64,7 +64,6 @@ int main(void) {
   display_textbuffer();
 
   init();
-  game_init();
   while( 1 )
   {
     loop(); /* Do loop again and again */
