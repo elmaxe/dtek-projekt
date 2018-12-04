@@ -48,17 +48,10 @@ void init()
 
 /* This function is called repetitively from the main program */
 void loop() {
-  if (getbtns() == 0x4) {
-    add_graphic_to_pixelbuffer(bird.sprite);
-    add_ground_to_pixelbuffer(ground);
-    invert_pixelbuffer();
-    pixelbuffer_to_buffer();
-    clear_pixelbuffer();
-    display_buffer();
-    move_obstacle(&bird);
-    move_ground(&ground);
+  if ((getbtns() & 0x4) >> 2) {
+    update_game_state();
+    update_graphics();
   }
-
   quicksleep(500);
 }
 

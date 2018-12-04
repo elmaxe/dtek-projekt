@@ -6,6 +6,7 @@
 */
 
 #define SPRITE_MAX_SIZE 16
+#define MAX_OBSTACLES 10
 
 #include "display.h"
 
@@ -30,7 +31,12 @@ typedef struct Dino {
 typedef struct Obstacle {
   Sprite sprite;
   int x_speed;
+  uint8_t on_screen;
 } Obstacle;
+
+typedef enum ObstacleType {
+  BIRD, CACTUS
+} ObstacleType;
 
 typedef struct Ground {
   int x, y;
@@ -39,7 +45,11 @@ typedef struct Ground {
   char (*graphic)[SCREEN_WIDTH][4];
 } Ground;
 
+typedef struct Obstacles {
+  Obstacle obstacles[MAX_OBSTACLES];
+  int num_obstacles;
+} Obstacles;
 
+
+void update_graphics();
 void add_graphic_to_pixelbuffer(Sprite sprite);
-void move(Sprite *spr, Direction dir);
-void move_ground(Ground *gr);
