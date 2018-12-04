@@ -13,32 +13,18 @@
 #include "display.h"
 // Test code
 void game_init() {
-  sprite.x = 10;
-  sprite.y = 0;
-  sprite.width = 13;
-  sprite.height = 9;
-  sprite.graphic = &bird;
+  //Set up bird test
+  bird.sprite.x = 127;
+  bird.sprite.y = 0;
+  bird.sprite.width = 13;
+  bird.sprite.height = 9;
+  bird.sprite.graphic = &bird_graphic;
+  bird.x_speed = -1;
+  //Set up ground
+  ground.x = 0;
+  ground.y = SCREEN_HEIGHT - 4;
+  ground.width = SCREEN_WIDTH;
+  ground.height = 4;
+  ground.x_speed = -2;
+  ground.graphic = &ground_graphic;
 }
-
-//dirs:
-//0 is left, 1 is right
-//2 is up, 3 is down
-void move(struct Sprite *spr, int dir) {
-  if (dir == 0) {
-    spr->x = (spr->x + 1);
-  } else if (dir == 1) {
-    spr->x = (spr->x - 1);
-  } else if (dir == 2) {
-    spr->y = (spr->y - 1) % SCREEN_HEIGHT;
-  } else if (dir == 3) {
-    spr->y = (spr->y + 1) % SCREEN_HEIGHT;
-  }
-
-}
-
-/* TODO
-  movesprite
-  clear buffer after each frame
-  krocklogik
-  marklogik
-*/

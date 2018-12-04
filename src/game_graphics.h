@@ -5,16 +5,18 @@
    For copyright and licensing, see file COPYING
 */
 
-typedef struct Empty {
-  char (*graphic)[16][16];
-} Empty;
+#define SPRITE_MAX_SIZE 16
+
+#include "display.h"
+
+typedef enum Direction {
+  UP, DOWN, RIGHT, LEFT
+} Direction;
 
 typedef struct Sprite {
-  int x;
-  int y;
-  int width;
-  int height;
-  char (*graphic)[16][16];
+  int x, y;
+  int width, height;
+  char (*graphic)[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE];
 } Sprite;
 
 typedef struct Dino {
@@ -31,9 +33,13 @@ typedef struct Obstacle {
 } Obstacle;
 
 typedef struct Ground {
-  Sprite sprite;
+  int x, y;
+  int width, height;
   int x_speed;
+  char (*graphic)[SCREEN_WIDTH][4];
 } Ground;
 
 
 void add_graphic_to_pixelbuffer(Sprite sprite);
+void move(Sprite *spr, Direction dir);
+void move_ground(Ground *gr);

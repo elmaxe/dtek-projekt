@@ -1,5 +1,5 @@
+//Temporary code TODO: Remove
+struct Obstacle bird;
+struct Ground ground;
 
-struct Sprite sprite;
 void game_init();
-void move(struct Sprite *spr, int dir);
-enum direction {UP, DOWN, RIGHT, LEFT};
