@@ -18,8 +18,20 @@ void game_init() {
   sprite.graphic = &bird;
 }
 
-void move(struct Sprite *spr) {
-  spr->x = (spr->x + 1);
+//dirs:
+//0 is left, 1 is right
+//2 is up, 3 is down
+void move(struct Sprite *spr, int dir) {
+  if (dir == 0) {
+    spr->x = (spr->x + 1);
+  } else if (dir == 1) {
+    spr->x = (spr->x - 1);
+  } else if (dir == 2) {
+    spr->y = (spr->y - 1);
+  } else if (dir == 3) {
+    spr->y = (spr->y + 1);
+  }
+
 }
 
 /* TODO

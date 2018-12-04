@@ -50,7 +50,7 @@ void loop() {
     add_graphic_to_pixelbuffer(sprite);
     pixelbuffer_to_buffer();
     display_buffer();
-    move(&sprite);
+    move(&sprite, 3);
   }
   if (getbtns() == 0x2) {
     //move(&sprite);
