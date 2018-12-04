@@ -104,13 +104,31 @@ void display_string(int line, char *s) {
 void pixelbuffer_to_buffer() {
   int page, byte, bit;
   char tmp;
-  for(page = 0; page < 4; page++) {
-    for(byte = 0; byte < 128; byte++) {
+  for(page = 0; page < NUM_PAGES; page++) {
+    for(byte = 0; byte < SCREEN_WIDTH; byte++) {
       tmp = 0;
       for(bit = 0; bit < 8; bit++) {
         tmp |= (pixelbuffer[byte][page * 8 + bit] & 1) << bit;
       }
       buffer[page][byte] = tmp;
+    }
+  }
+}
+
+void clear_pixelbuffer() {
+  int x, y;
+  for (x = 0; x < SCREEN_WIDTH; x++) {
+    for (y = 0; y < SCREEN_HEIGHT; y++) {
+      pixelbuffer[x][y] = 0;
+    }
+  }
+}
+
+void invert_pixelbuffer() {
+  int x, y;
+  for (x = 0; x < SCREEN_WIDTH; x++) {
+    for (y = 0; y < SCREEN_HEIGHT; y++) {
+      pixelbuffer[x][y] = ~pixelbuffer[x][y];
     }
   }
 }

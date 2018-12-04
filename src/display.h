@@ -8,6 +8,7 @@
 //Screen dimensions in pixels
 #define SCREEN_HEIGHT 32
 #define SCREEN_WIDTH 128
+#define NUM_PAGES 4
 
 /* Declare bitmap array containing font */
 extern const uint8_t const font[128*8];
