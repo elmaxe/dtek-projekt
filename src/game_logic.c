@@ -7,13 +7,14 @@
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <stdlib.h>
-#include <stdio.h>
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "game_graphics.h"
 #include "game_logic.h"
 #include "data.h"
 #include "display.h"
 #include "input.h"
+#include "loop.h"
+void *stdout;
 
 int GAME_STATE = 0;
 int DAY = 1;
@@ -184,8 +185,9 @@ void game_init() {
   ground.x_speed = -1;
   ground.graphic = &ground_graphic;
   //Set up obstacles
-  // if (rand() % 3 == 1) {
-  //   add_obstacle(CACTUS, -1);
-  // } else
-  //   add_obstacle(BIRD, -1);
+  srand(seed);
+  if (rand() % 2 == 0)
+    add_obstacle(CACTUS, -1);
+  else
+    add_obstacle(BIRD, -1);
 }

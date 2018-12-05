@@ -5,7 +5,6 @@
 
 //Temporary code TODO: Remove
 Dino dino;
-Obstacle bird;
 Ground ground;
 Obstacles obstacles;
 Visual moon;

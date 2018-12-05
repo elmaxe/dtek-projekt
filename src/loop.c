@@ -8,7 +8,6 @@
 */
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
-#include <stdio.h>
 #include <stdlib.h>
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "loop.h"
@@ -16,6 +15,7 @@
 #include "game_graphics.h"
 #include "game_logic.h"
 #include "data.h"
+void *stdout;
 
 int seed = 0;
 
@@ -70,8 +70,6 @@ void loop() {
 
   if ((getbtns() & 0x2) >> 1) {
     GAME_STATE = 1;
-    rand();
-    //srand((unsigned long)seed);
   } else if ((getbtns() & 0x4) >> 2) {
   } else if (getbtns() & 0x1) {
   }
