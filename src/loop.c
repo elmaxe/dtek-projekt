@@ -8,12 +8,16 @@
 */
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
+#include <stdio.h>
+#include <stdlib.h>
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "loop.h"
 #include "display.h"
 #include "game_graphics.h"
 #include "game_logic.h"
 #include "data.h"
+
+int seed = 0;
 
 /* Interrupt Service Routine */
 void user_isr() {
@@ -48,6 +52,7 @@ void init()
 /* This function is called repetitively from the main program */
 void loop() {
   if (GAME_STATE == 0) {
+    seed++;
     add_screen_graphic_to_pixelbuffer(menu_graphic);
     pixelbuffer_to_buffer();
     clear_pixelbuffer();
@@ -65,11 +70,8 @@ void loop() {
 
   if ((getbtns() & 0x2) >> 1) {
     GAME_STATE = 1;
-    // if (DAY) {
-    //   DAY = 0;
-    // } else {
-    //   DAY = 1;
-    // }
+    rand();
+    //srand((unsigned long)seed);
   } else if ((getbtns() & 0x4) >> 2) {
   } else if (getbtns() & 0x1) {
   }

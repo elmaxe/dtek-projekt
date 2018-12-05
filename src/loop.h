@@ -9,3 +9,5 @@ void init();
 void loop();
 void enable_interrupt();
 void quicksleep(int cyc);
+
+extern int seed;

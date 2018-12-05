@@ -6,6 +6,8 @@
 */
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
+#include <stdlib.h>
+#include <stdio.h>
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "game_graphics.h"
 #include "game_logic.h"
@@ -195,5 +197,8 @@ void game_init() {
   ground.x_speed = -1;
   ground.graphic = &ground_graphic;
   //Set up obstacles
-  add_obstacle(CACTUS, -1);
+  // if (rand() % 3 == 1) {
+  //   add_obstacle(CACTUS, -1);
+  // } else
+  //   add_obstacle(BIRD, -1);
 }
