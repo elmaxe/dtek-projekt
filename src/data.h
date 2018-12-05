@@ -1,4 +1,4 @@
-#define CACTUS_HEIGHT 13
+#define CACTUS_HEIGHT 11
 #define CACTUS_WIDTH 6
 #define BIRD_HEIGHT 9
 #define BIRD_WIDTH 13
