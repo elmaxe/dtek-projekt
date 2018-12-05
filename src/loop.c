@@ -49,11 +49,17 @@ void init()
 /* This function is called repetitively from the main program */
 void loop() {
   if (GAME_STATE == 0) {
+
+    add_graphic_to_pixelbuffer_no_size_limit(menu_graphic);
+    pixelbuffer_to_buffer();
+    clear_pixelbuffer();
+    display_buffer();
+    /*
     display_string(0, "Dinosaur Run");
     display_string(1, "by M.Wesslen");
     display_string(2, "and A.Elmarsson");
     display_string(3, "Press any button");
-    display_textbuffer();
+    display_textbuffer();*/
   } else {
     update_game_state();
     update_graphics();
@@ -68,11 +74,10 @@ void loop() {
     }
 
   } else if ((getbtns() & 0x4) >> 2) {
-    GAME_STATE = 1;
   } else if (getbtns() & 0x1) {
 
   }
-  quicksleep(500);
+  quicksleep(100000);
 }
 
 /* quicksleep:

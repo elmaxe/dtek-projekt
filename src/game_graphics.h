@@ -59,3 +59,4 @@ typedef struct Visual {
 
 void update_graphics();
 void add_graphic_to_pixelbuffer(Sprite sprite);
+void add_graphic_to_pixelbuffer_no_size_limit(uint8_t array[SCREEN_WIDTH][SCREEN_HEIGHT]);
