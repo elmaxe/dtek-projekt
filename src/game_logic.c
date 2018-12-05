@@ -121,15 +121,52 @@ void remove_obstacles() {
   }
 }
 
+int box_collision(Dino d, Obstacle o) {
+  if (d.sprite.x < o.sprite.x + o.sprite.width &&
+   d.sprite.x + d.sprite.width > o.sprite.x &&
+   d.sprite.y < o.sprite.y + o.sprite.height &&
+   d.sprite.height + d.sprite.y > o.sprite.y) {
+    // Collision
+    return 1;
+  }
+  return 0;
+}
+
+
+
+void collision(Dino d, Obstacle o) {
+  int x, y;
+  int o_pixel_x_pos, o_pixel_y_pos;
+  int d_pixel_x, d_pixel_y;
+  for (x = 0; x < o.sprite.width; x++) {
+    for (y = 0; y < o.sprite.height; y++) {
+      if (o.sprite.graphic[x][y]) {
+        o_pixel_x_pos = o.sprite.x + x;
+        o_pixel_y_pos = o.sprite.y + y;
+        d_pixel_x = o_pixel_x_pos - d.sprite.x;
+        d_pixel_y = o_pixel_y_pos - d.sprite.y;
+        if (0 <= d_pixel_x && d_pixel_x < DINO_WIDTH && 0 <= d_pixel_y && d_pixel_y < DINO_HEIGHT) {
+          if (d.sprite.graphic[d_pixel_x][d_pixel_y]) {
+            while(1){}
+            // GAME_STATE = 0;
+            return;
+          }
+        }
+      }
+    }
+  }
+}
+
 void update_game_state() {
   //Move ground
   move_ground(&ground);
   move_dino(&dino);
   //Move obstacles
   int i;
-  for (i = 0; i < obstacles.num_obstacles; i++) {
+  for (i = 0; i < MAX_OBSTACLES; i++) {
     if (obstacles.obstacles[i].on_screen) {
       move_obstacle(&obstacles.obstacles[i]);
+      collision(dino, obstacles.obstacles[i]);
     }
   }
 }

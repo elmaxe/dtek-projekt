@@ -17,7 +17,6 @@
 
 /* Interrupt Service Routine */
 void user_isr() {
-  // interrupt
   IFSCLR(0) = 0x100;
 }
 
@@ -35,7 +34,7 @@ void init()
   T2CON = 0x0; // Clear control register
   T2CONSET = (0x7 << 4); // Set prescale
   TMR2 = 0x0; // Clear timer register
-  PR2 = 0x7A12; // Set period register
+  PR2 = 0x135A; // Set period register
   IFSCLR(0) = 0x100; // Clear timeout event flag
   IECSET(0) = 0x100; // Enable timer interrupts
   IPCSET(2) = 0x1F; // Set priority
@@ -49,8 +48,7 @@ void init()
 /* This function is called repetitively from the main program */
 void loop() {
   if (GAME_STATE == 0) {
-
-    add_graphic_to_pixelbuffer_no_size_limit(menu_graphic);
+    add_screen_graphic_to_pixelbuffer(menu_graphic);
     pixelbuffer_to_buffer();
     clear_pixelbuffer();
     display_buffer();
@@ -67,17 +65,15 @@ void loop() {
 
   if ((getbtns() & 0x2) >> 1) {
     GAME_STATE = 1;
-    if (DAY) {
-      DAY = 0;
-    } else {
-      DAY = 1;
-    }
-
+    // if (DAY) {
+    //   DAY = 0;
+    // } else {
+    //   DAY = 1;
+    // }
   } else if ((getbtns() & 0x4) >> 2) {
   } else if (getbtns() & 0x1) {
-
   }
-  quicksleep(100000);
+  quicksleep(150000);
 }
 
 /* quicksleep:
