@@ -57,11 +57,6 @@ int main(void) {
   SPI2CONSET = 0x8000;
 
   display_init();
-  display_string(0, "Dinosaur Run");
-  display_string(1, "by M.Wesslen");
-  display_string(2, "and A.Elmarsson");
-  display_string(3, "Press any button");
-  display_textbuffer();
 
   init();
   while( 1 )

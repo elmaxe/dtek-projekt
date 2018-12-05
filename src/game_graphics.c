@@ -49,7 +49,13 @@ void update_graphics() {
   for (i = 0; i < obstacles.num_obstacles; i++) {
     add_graphic_to_pixelbuffer(obstacles.obstacles[i].sprite);
   }
+<<<<<<< HEAD
   //invert_pixelbuffer(); //Night time
+=======
+  if (DAY) {
+    invert_pixelbuffer();
+  }
+>>>>>>> b117bbecfc428126dde9a72f725f0f83dc97930e
   pixelbuffer_to_buffer();
   clear_pixelbuffer();
   display_buffer();

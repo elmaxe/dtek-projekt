@@ -12,6 +12,9 @@
 #include "data.h"
 #include "display.h"
 
+int GAME_STATE = 0;
+int DAY = 1;
+
 //TODO Fix so that argument 1 is an "object" (cacti, bird etc)
 //and not a sprite
 //Dont think this function will be needed
@@ -51,6 +54,7 @@ void move_ground(Ground *gr) {
   gr->x += gr->x_speed;
 }
 
+<<<<<<< HEAD
 void update_game_state() {
   //Move ground
   move_ground(&ground);
@@ -63,6 +67,8 @@ void update_game_state() {
   }
 }
 
+=======
+>>>>>>> b117bbecfc428126dde9a72f725f0f83dc97930e
 void init_obstacle(Obstacle *obs, int x_speed){
   obs->x_speed = x_speed;
   obs->on_screen = 1;
@@ -115,7 +121,20 @@ void remove_obstacles() {
   }
 }
 
+void update_game_state() {
+  //Move ground
+  move_ground(&ground);
+  //Move obstacles
+  int i;
+  for (i = 0; i < obstacles.num_obstacles; i++) {
+    if (obstacles.obstacles[i].on_screen) {
+      move_obstacle(&obstacles.obstacles[i]);
+    }
+  }
+}
+
 void game_init() {
+<<<<<<< HEAD
   dino.sprite.x = 5;
   dino.sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - DINO_HEIGHT;
   dino.sprite.width = DINO_WIDTH;
@@ -130,6 +149,8 @@ void game_init() {
   bird.sprite.height = BIRD_HEIGHT;
   bird.sprite.graphic = &bird_graphic;
   bird.x_speed = -1;
+=======
+>>>>>>> b117bbecfc428126dde9a72f725f0f83dc97930e
   //Set up ground
   ground.x = 0;
   ground.y = SCREEN_HEIGHT - GROUND_HEIGHT;
