@@ -23,8 +23,9 @@ typedef struct Sprite {
 typedef struct Dino {
   //TODO: Dino needs two sprites for duck and stand; could be implemented by making Sprite.graphics a triple nested array
   Sprite sprite;
-  int y_speed;
-  int y_accel;
+  float y_pos;
+  float y_speed;
+  float y_accel;
 } Dino;
 
 //Cacti, birds etc.

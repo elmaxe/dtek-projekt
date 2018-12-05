@@ -59,14 +59,20 @@ void loop() {
     update_graphics();
   }
 
-  if ((getbtns() & 0x4) >> 2) {
+  if ((getbtns() & 0x2) >> 1) {
     GAME_STATE = 1;
-  } else if ((getbtns() & 0x2) >> 1) {
+    if (DAY) {
+      DAY = 0;
+    } else {
+      DAY = 1;
+    }
+
+  } else if ((getbtns() & 0x4) >> 2) {
     GAME_STATE = 1;
   } else if (getbtns() & 0x1) {
-    add_obstacle(CACTUS, -1);
+
   }
-  quicksleep(500);
+  quicksleep(150000);
 }
 
 /* quicksleep:

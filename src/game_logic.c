@@ -11,39 +11,52 @@
 #include "game_logic.h"
 #include "data.h"
 #include "display.h"
+#include "input.h"
 
 int GAME_STATE = 0;
 int DAY = 1;
 
-//TODO Fix so that argument 1 is an "object" (cacti, bird etc)
-//and not a sprite
-//Dont think this function will be needed
-void move(Sprite *spr, Direction dir) {
-  switch(dir) {
-    case RIGHT:
-      spr->x = (spr->x + 1) % SCREEN_WIDTH;
-      break;
-    case LEFT:
-      //TODO: Remove object when out of bounds.
-      spr->x = (spr->x - 1);
-      break;
-    case UP:
-      spr->y = (spr->y - 1) % SCREEN_HEIGHT;
-      break;
-    case DOWN:
-      spr->y = (spr->y + 1) % SCREEN_HEIGHT;
-      break;
-    default:
-      spr->x = (spr->x - 1);
+int round(float f) {
+  int floor = (int)f;
+  if (f >= 0){
+    if (f - (float)floor < 0.49)
+      return floor;
+    else
+      return floor + 1;
+  } else {
+    if (f - (float)floor > -0.49)
+      return floor;
+    else
+      return floor - 1;
   }
 }
 
-void accel_dino(Dino *dino) {
-  dino->y_speed += dino->y_accel;
+void jump_dino(Dino *dino) {
+  if (round(dino->y_pos) == DINO_BASE_POS) {
+    dino->y_speed = -3.0;
+    dino->y_accel = 0.18;
+  }
 }
 
 void move_dino(Dino *dino) {
-  dino->sprite.y += dino->y_speed;
+  if (round(dino->y_pos) != DINO_BASE_POS) {
+    dino->y_accel = 0.25;
+  }
+  if ((getbtns() & 0x4) >> 2){
+    jump_dino(dino);
+    if (round(dino->y_pos) != DINO_BASE_POS) {
+      dino->y_accel = 0.18;
+    }
+  }
+  dino->y_pos += dino->y_speed;
+  dino->y_speed += dino->y_accel;
+  dino->sprite.y = round(dino->y_pos);
+  if (round(dino->y_pos) >= DINO_BASE_POS) {
+    dino->y_speed = 0;
+    dino->y_accel = 0;
+    dino->y_pos = (float)DINO_BASE_POS;
+    dino->sprite.y = DINO_BASE_POS;
+  }
 }
 
 void move_obstacle(Obstacle *obs) {
@@ -54,6 +67,8 @@ void move_ground(Ground *gr) {
   gr->x += gr->x_speed;
 }
 
+void init_dino(Dino *dino);
+
 void init_obstacle(Obstacle *obs, int x_speed){
   obs->x_speed = x_speed;
   obs->on_screen = 1;
@@ -63,7 +78,7 @@ void init_obstacle(Obstacle *obs, int x_speed){
 void init_cactus(Obstacle *obs, int x_speed) {
   init_obstacle(obs, x_speed);
   obs->sprite.graphic = &cactus_graphic;
-  obs->sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - CACTUS_HEIGHT;
+  obs->sprite.y = SCREEN_HEIGHT - 1 - CACTUS_HEIGHT;
   obs->sprite.width = CACTUS_WIDTH;
   obs->sprite.height = CACTUS_HEIGHT;
 }
@@ -109,6 +124,7 @@ void remove_obstacles() {
 void update_game_state() {
   //Move ground
   move_ground(&ground);
+  move_dino(&dino);
   //Move obstacles
   int i;
   for (i = 0; i < obstacles.num_obstacles; i++) {
@@ -120,12 +136,13 @@ void update_game_state() {
 
 void game_init() {
   dino.sprite.x = 5;
-  dino.sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - DINO_HEIGHT;
+  dino.sprite.y = DINO_BASE_POS;
   dino.sprite.width = DINO_WIDTH;
   dino.sprite.height = DINO_HEIGHT;
   dino.sprite.graphic = &dino_graphic;
   dino.y_speed = 0;
   dino.y_accel = 0;
+  dino.y_pos = (float)DINO_BASE_POS;
   //Set up ground
   ground.x = 0;
   ground.y = SCREEN_HEIGHT - GROUND_HEIGHT;
