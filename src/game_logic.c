@@ -56,7 +56,7 @@ void update_game_state() {
   move_ground(&ground);
   //Move obstacles
   int i;
-  for (i = 0; i < obstacles.num_obstacles; i++) {
+  for (i = 0; i < MAX_OBSTACLES; i++) {
     if (obstacles.obstacles[i].on_screen) {
       move_obstacle(&obstacles.obstacles[i]);
     }
@@ -116,18 +116,25 @@ void remove_obstacles() {
 }
 
 void game_init() {
+  dino.sprite.x = 5;
+  dino.sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - DINO_HEIGHT;
+  dino.sprite.width = DINO_WIDTH;
+  dino.sprite.height = DINO_HEIGHT;
+  dino.sprite.graphic = &dino_graphic;
+  dino.y_speed = 0;
+  dino.y_accel = 0;
   //Set up bird test
   bird.sprite.x = 127;
   bird.sprite.y = 0;
-  bird.sprite.width = 13;
-  bird.sprite.height = 9;
+  bird.sprite.width = BIRD_WIDTH;
+  bird.sprite.height = BIRD_HEIGHT;
   bird.sprite.graphic = &bird_graphic;
   bird.x_speed = -1;
   //Set up ground
   ground.x = 0;
-  ground.y = SCREEN_HEIGHT - 4;
+  ground.y = SCREEN_HEIGHT - GROUND_HEIGHT;
   ground.width = SCREEN_WIDTH;
-  ground.height = 4;
+  ground.height = GROUND_HEIGHT;
   ground.x_speed = -1;
   ground.graphic = &ground_graphic;
   //Set up obstacles

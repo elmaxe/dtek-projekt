@@ -26,7 +26,7 @@ void add_graphic_to_pixelbuffer(Sprite sprite) {
     if (x_pos < 0 && x_pos >= SCREEN_WIDTH)
       break;
     for (y = 0; y < sprite.height; y++) {
-      int y_pos = sprite.y + y
+      int y_pos = sprite.y + y;
       pixelbuffer[x_pos][y_pos] |= (*sprite.graphic)[x][y];
     }
   }
