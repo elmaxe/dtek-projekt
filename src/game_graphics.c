@@ -22,8 +22,12 @@ int scrolling_pixel_x_pos(int x_pos) {
 void add_graphic_to_pixelbuffer(Sprite sprite) {
   int x, y;
   for (x = 0; x < sprite.width; x++) {
+    int x_pos = sprite.x + x;
+    if (x_pos < 0 && x_pos >= SCREEN_WIDTH)
+      break;
     for (y = 0; y < sprite.height; y++) {
-      pixelbuffer[sprite.x + x][sprite.y + y] |= (*sprite.graphic)[x][y];
+      int y_pos = sprite.y + y
+      pixelbuffer[x_pos][y_pos] |= (*sprite.graphic)[x][y];
     }
   }
 }
@@ -39,13 +43,13 @@ void add_ground_to_pixelbuffer(Ground ground) {
 
 //Update dino, ground, and the array of obstacles
 void update_graphics() {
-  //add_graphic_to_pixelbuffer(dino.sprite);
+  add_graphic_to_pixelbuffer(dino.sprite);
   add_ground_to_pixelbuffer(ground);
   int i;
   for (i = 0; i < obstacles.num_obstacles; i++) {
     add_graphic_to_pixelbuffer(obstacles.obstacles[i].sprite);
   }
-  //invert_pixelbuffer();
+  //invert_pixelbuffer(); //Night time
   pixelbuffer_to_buffer();
   clear_pixelbuffer();
   display_buffer();
