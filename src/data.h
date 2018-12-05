@@ -24,6 +24,7 @@ extern uint8_t buffer[4][128];
 
 extern uint8_t bird_graphic[16][16];
 extern uint8_t dino_graphic[16][16];
+extern uint8_t dino_graphic_duck[16][16];
 extern uint8_t cactus_graphic[16][16];
 extern uint8_t ground_graphic[128][4];
 extern uint8_t moon_graphic[16][16];
