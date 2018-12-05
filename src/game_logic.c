@@ -140,13 +140,13 @@ void collision(Dino d, Obstacle o) {
   int d_pixel_x, d_pixel_y;
   for (x = 0; x < o.sprite.width; x++) {
     for (y = 0; y < o.sprite.height; y++) {
-      if (o.sprite.graphic[x][y]) {
+      if ((*o.sprite.graphic)[x][y]) {
         o_pixel_x_pos = o.sprite.x + x;
         o_pixel_y_pos = o.sprite.y + y;
         d_pixel_x = o_pixel_x_pos - d.sprite.x;
         d_pixel_y = o_pixel_y_pos - d.sprite.y;
         if (0 <= d_pixel_x && d_pixel_x < DINO_WIDTH && 0 <= d_pixel_y && d_pixel_y < DINO_HEIGHT) {
-          if (d.sprite.graphic[d_pixel_x][d_pixel_y]) {
+          if ((*d.sprite.graphic)[d_pixel_x][d_pixel_y]) {
             while(1){}
             // GAME_STATE = 0;
             return;
