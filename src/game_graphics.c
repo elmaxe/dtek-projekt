@@ -14,6 +14,9 @@
 
 int scrolling_pixel_x_pos(int x_pos) {
   if (x_pos < 0) {
+    if (x_pos % SCREEN_WIDTH == 0) {
+      return 0;
+    }
     return SCREEN_WIDTH + (x_pos % SCREEN_WIDTH); //Great bug if x_pos underflows.
   }
   return x_pos % SCREEN_WIDTH;
@@ -21,13 +24,16 @@ int scrolling_pixel_x_pos(int x_pos) {
 
 void add_graphic_to_pixelbuffer(Sprite sprite) {
   int x, y;
+  int x_pixel_pos, y_pixel_pos;
   for (x = 0; x < sprite.width; x++) {
-    int x_pos = sprite.x + x;
-    if (x_pos < 0 && x_pos >= SCREEN_WIDTH)
-      break;
     for (y = 0; y < sprite.height; y++) {
-      int y_pos = sprite.y + y;
-      pixelbuffer[x_pos][y_pos] |= (*sprite.graphic)[x][y];
+      x_pixel_pos = sprite.x + x;
+      if ((x_pixel_pos < 0) || (x_pixel_pos >= SCREEN_WIDTH))
+        break;
+      y_pixel_pos = sprite.y + y;
+      if ((y_pixel_pos < 0) || (y_pixel_pos >= SCREEN_HEIGHT))
+        continue;
+      pixelbuffer[x_pixel_pos][y_pixel_pos] |= (*sprite.graphic)[x][y];
     }
   }
 }
