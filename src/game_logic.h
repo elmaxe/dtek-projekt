@@ -5,6 +5,7 @@ Dino dino;
 Obstacle bird;
 Ground ground;
 Obstacles obstacles;
+Visual moon;
 
 void game_init();
 void update_game_state();

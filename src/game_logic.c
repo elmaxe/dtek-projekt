@@ -135,6 +135,13 @@ void update_game_state() {
 }
 
 void game_init() {
+  //moon
+  moon.sprite.x = 100;
+  moon.sprite.y = 5;
+  moon.sprite.width = MOON_WIDTH;
+  moon.sprite.height = MOON_HEIGHT;
+  moon.sprite.graphic = &moon_graphic;
+
   dino.sprite.x = 5;
   dino.sprite.y = DINO_BASE_POS;
   dino.sprite.width = DINO_WIDTH;

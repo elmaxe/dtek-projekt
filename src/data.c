@@ -62,6 +62,15 @@ uint8_t cactus_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
   {0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0}
 };
 
+uint8_t moon_graphic[SPRITE_MAX_SIZE][SPRITE_MAX_SIZE] = {
+  {0, 0, 0, 0, 1, 0},
+  {0, 0, 0, 0, 1, 1},
+  {0, 0, 0, 1, 1, 1},
+  {0, 0, 1, 1, 1, 1},
+  {1, 1, 1, 1, 1, 0},
+  {0, 1, 1, 1, 0, 0}
+};
+
 uint8_t ground_graphic[SCREEN_WIDTH][4] = {
   {1, 0, 0, 0},
   {1, 0, 0, 0},

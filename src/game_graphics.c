@@ -57,6 +57,10 @@ void update_graphics() {
   }
   if (DAY) {
     invert_pixelbuffer();
+  } else {
+    //It is night D:
+    //Add moon
+    add_graphic_to_pixelbuffer(moon.sprite);
   }
   pixelbuffer_to_buffer();
   clear_pixelbuffer();

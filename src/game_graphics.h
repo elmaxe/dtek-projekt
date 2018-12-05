@@ -51,6 +51,11 @@ typedef struct Obstacles {
   int num_obstacles;
 } Obstacles;
 
+//Moon, clouds?
+typedef struct Visual {
+  Sprite sprite;
+} Visual;
+
 
 void update_graphics();
 void add_graphic_to_pixelbuffer(Sprite sprite);
