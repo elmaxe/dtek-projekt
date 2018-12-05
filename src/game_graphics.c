@@ -47,6 +47,15 @@ void add_ground_to_pixelbuffer(Ground ground) {
   }
 }
 
+void add_graphic_to_pixelbuffer_no_size_limit(uint8_t array[SCREEN_WIDTH][SCREEN_HEIGHT]) {
+  int x, y;
+  for (x = 0; x < SCREEN_WIDTH; x++) {
+    for (y = 0; y < SCREEN_HEIGHT; y++) {
+      pixelbuffer[x][y] |= array[x][y];
+    }
+  }
+}
+
 //Update dino, ground, and the array of obstacles
 void update_graphics() {
   add_graphic_to_pixelbuffer(dino.sprite);

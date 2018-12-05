@@ -27,3 +27,4 @@ extern uint8_t dino_graphic[16][16];
 extern uint8_t cactus_graphic[16][16];
 extern uint8_t ground_graphic[128][4];
 extern uint8_t moon_graphic[16][16];
+extern uint8_t menu_graphic[128][32];
