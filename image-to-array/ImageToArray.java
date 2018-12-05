@@ -23,7 +23,7 @@ class ImageToArray {
 
       //Black: -16777216
       //White: -1
-      //Invicible: 0
+      //Invisible: 0
       process();
       try {
         writeArrays();
