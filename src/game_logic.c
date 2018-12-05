@@ -33,19 +33,19 @@ int round(float f) {
 
 void jump_dino(Dino *dino) {
   if (round(dino->y_pos) == DINO_BASE_POS) {
-    dino->y_speed = -3.0;
-    dino->y_accel = 0.18;
+    dino->y_speed = DINO_BASE_SPEED;
+    dino->y_accel = DINO_ACCEL_LOW;
   }
 }
 
 void move_dino(Dino *dino) {
   if (round(dino->y_pos) != DINO_BASE_POS) {
-    dino->y_accel = 0.25;
+    dino->y_accel = DINO_ACCEL_HIGH;
   }
   if ((getbtns() & 0x4) >> 2){
     jump_dino(dino);
     if (round(dino->y_pos) != DINO_BASE_POS) {
-      dino->y_accel = 0.18;
+      dino->y_accel = DINO_ACCEL_LOW;
     }
   }
   dino->y_pos += dino->y_speed;

@@ -72,7 +72,7 @@ void loop() {
   } else if (getbtns() & 0x1) {
 
   }
-  quicksleep(150000);
+  quicksleep(500);
 }
 
 /* quicksleep:
