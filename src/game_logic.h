@@ -21,9 +21,10 @@ void update_game_state();
 void jump_dino(Dino *dino);
 
 typedef enum GameState {
-  START, MENU, GAME, GAMEOVER
+  START, MENU, GAME, GAMEOVER, HIGHSCORE, CREDITS
 } GameState;
 
 extern GameState game_state;
 extern unsigned char score;
+extern unsigned char high_score[4];
 extern int DAY;

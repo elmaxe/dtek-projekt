@@ -10,6 +10,7 @@
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <stdlib.h>
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
+#include <string.h>
 #include "loop.h"
 #include "display.h"
 #include "game_graphics.h"
@@ -17,6 +18,7 @@
 #include "data.h"
 #include "input.h"
 void *stdout;
+char * itoaconv( int num );
 
 int seed = 0;
 
@@ -58,8 +60,8 @@ void loop() {
     pixelbuffer_to_buffer();
     clear_pixelbuffer();
     display_buffer();
-    if (is_pressed(BTN2)) {
-      game_state = GAME;
+    if (is_pressed_and_released(BTN2)) {
+      game_state = MENU;
       srand(seed);
     }
     /*
@@ -78,6 +80,48 @@ void loop() {
     pixelbuffer_to_buffer();
     clear_pixelbuffer();
     display_buffer();
+    if (is_pressed_and_released(BTN2)){
+      game_state = MENU;
+    }
+  } else if (game_state == MENU) {
+    display_string(0, "     -MENU-     ");
+    display_string(1, "Play        BTN4");
+    display_string(2, "Highscore   BTN3");
+    display_string(3, "Credits     BTN2");
+    display_textbuffer();
+    if (is_pressed_and_released(BTN4)) {
+      game_state = GAME;
+    } else if (is_pressed_and_released(BTN3)) {
+      game_state = HIGHSCORE;
+    } else if (is_pressed_and_released(BTN2)) {
+      game_state = CREDITS;
+    }
+  } else if (game_state == HIGHSCORE) {
+    char hs1[16] = "HS1          ";
+    char hs2[16] = "HS2          ";
+    char hs3[16] = "HS3          ";
+    char hs4[16] = "HS4          ";
+    strcat(hs1, itoaconv((int)high_score[0]));
+    strcat(hs2, itoaconv((int)high_score[1]));
+    strcat(hs3, itoaconv((int)high_score[2]));
+    strcat(hs4, itoaconv((int)high_score[3]));
+    display_string(0, hs1);
+    display_string(1, hs2);
+    display_string(2, hs3);
+    display_string(3, hs4);
+    display_textbuffer();
+    if (is_pressed_and_released(BTN4) || is_pressed_and_released(BTN3) || is_pressed_and_released(BTN2)) {
+      game_state = MENU;
+    }
+  } else if (game_state == CREDITS) {
+    display_string(0, "Dino Run");
+    display_string(1, "by M.Wesslen");
+    display_string(2, "and A.Elmarsson");
+    display_string(3, "Press any button");
+    display_textbuffer();
+    if (is_pressed_and_released(BTN4) || is_pressed_and_released(BTN3) || is_pressed_and_released(BTN2)) {
+      game_state = MENU;
+    }
   }
   quicksleep(150000);
 }
@@ -89,4 +133,39 @@ void loop() {
 void quicksleep(int cyc) {
   int i;
   for(i = cyc; i > 0; i--);
+}
+
+#define ITOA_BUFSIZ ( 24 )
+char * itoaconv( int num )
+{
+  register int i, sign;
+  static char itoa_buffer[ ITOA_BUFSIZ ];
+  static const char maxneg[] = "-2147483648";
+
+  itoa_buffer[ ITOA_BUFSIZ - 1 ] = 0;   /* Insert the end-of-string marker. */
+  sign = num;                           /* Save sign. */
+  if( num < 0 && num - 1 > 0 )          /* Check for most negative integer */
+  {
+    for( i = 0; i < sizeof( maxneg ); i += 1 )
+    itoa_buffer[ i + 1 ] = maxneg[ i ];
+    i = 0;
+  }
+  else
+  {
+    if( num < 0 ) num = -num;           /* Make number positive. */
+    i = ITOA_BUFSIZ - 2;                /* Location for first ASCII digit. */
+    do {
+      itoa_buffer[ i ] = num % 10 + '0';/* Insert next digit. */
+      num = num / 10;                   /* Remove digit from number. */
+      i -= 1;                           /* Move index to next empty position. */
+    } while( num > 0 );
+    if( sign < 0 )
+    {
+      itoa_buffer[ i ] = '-';
+      i -= 1;
+    }
+  }
+  /* Since the loop always sets the index i to the next empty position,
+   * we must add 1 in order to return a pointer to the first occupied position. */
+  return( &itoa_buffer[ i + 1 ] );
 }

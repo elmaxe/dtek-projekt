@@ -15,6 +15,7 @@
 #include "input.h"
 #include "loop.h"
 void *stdout;
+void game_lose();
 
 GameState game_state = START;
 int DAY = 0;
@@ -179,7 +180,7 @@ void collision(Dino d, Obstacle o) {
         d_pixel_y = o_pixel_y_pos - d.sprite.y;
         if (0 <= d_pixel_x && d_pixel_x < DINO_WIDTH && 0 <= d_pixel_y && d_pixel_y < DINO_HEIGHT) {
           if ((*d.sprite.graphic)[d_pixel_x][d_pixel_y]) {
-            game_state = START;
+            game_lose();
             return;
           }
         }
@@ -264,11 +265,12 @@ void game_init() {
   ground.graphic = &ground_graphic;
 }
 
-void game_reset() {
+void game_lose() {
   int i;
   for (i = 0; i < MAX_OBSTACLES; i++) {
     obstacles.obstacles[i].on_screen = 0;
   }
   add_highcore();
   game_init();
+  game_state = GAMEOVER;
 }

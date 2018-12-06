@@ -33,3 +33,11 @@ int is_pressed(Button btn) {
       return (getbtns() & 0x4) >> 2;
   }
 }
+
+int is_pressed_and_released(Button btn) {
+  if (is_pressed(btn)) {
+    while (is_pressed(btn)) {}
+    return 1;
+  }
+  return 0;
+}

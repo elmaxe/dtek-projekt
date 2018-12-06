@@ -10,4 +10,5 @@ typedef enum Button {
 } Button;
 
 int is_pressed(Button bnt);
+int is_pressed_and_released(Button btn);
 int getsw();
