@@ -1,7 +1,8 @@
 #define DINO_BASE_POS 16
 #define DINO_BASE_SPEED -3.0
-#define DINO_ACCEL_LOW 0.18
-#define DINO_ACCEL_HIGH 0.25
+#define DINO_JUMP_ACCEL 0.17
+#define DINO_REG_ACCEL 0.25
+#define DINO_DUCK_ACCEL 0.31
 
 //Temporary code TODO: Remove
 Dino dino;

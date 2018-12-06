@@ -38,25 +38,34 @@ int round(float f) {
 void jump_dino(Dino *dino) {
   if (round(dino->y_pos) == DINO_BASE_POS) {
     dino->y_speed = DINO_BASE_SPEED;
-    dino->y_accel = DINO_ACCEL_LOW;
+    dino->y_accel = DINO_JUMP_ACCEL;
   }
 }
 
 void move_dino(Dino *dino) {
+  // If in jump and jump button not pressed, high down accel.
   if (round(dino->y_pos) != DINO_BASE_POS) {
-    dino->y_accel = DINO_ACCEL_HIGH;
-  }
-  if ((getbtns() & 0x4) >> 2){
-    jump_dino(dino);
-    if (round(dino->y_pos) != DINO_BASE_POS) {
-      dino->y_accel = DINO_ACCEL_LOW;
+    // If duck button pressed even higher down accel.
+    if ((getbtns() & 0x2) >> 1) {
+      dino->y_accel = DINO_DUCK_ACCEL;
+    } else {
+      dino->y_accel = DINO_REG_ACCEL;
     }
   }
+  // If jump button pressed, low down accel.
+  if ((getbtns() & 0x4) >> 2) {
+    jump_dino(dino);
+    if (round(dino->y_pos) != DINO_BASE_POS) {
+      dino->y_accel = DINO_JUMP_ACCEL;
+    }
+  }
+  // If duck button pressed point graphic to duck graphic
   if ((getbtns() & 0x2) >> 1) {
     dino->sprite.graphic = &dino_graphic_duck;
   } else {
     dino->sprite.graphic = &dino_graphic;
   }
+
   dino->y_pos += dino->y_speed;
   dino->y_speed += dino->y_accel;
   dino->sprite.y = round(dino->y_pos);
