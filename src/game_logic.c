@@ -17,8 +17,10 @@
 void *stdout;
 
 int GAME_STATE = 0;
-int DAY = 1;
+int DAY = 0;
 int spawn_counter = 0;
+int day_counter = 0;
+int next_day;
 
 int round(float f) {
   int floor = (int)f;
@@ -194,6 +196,17 @@ void update_game_state() {
   }
   remove_obstacles();
   spawn_counter++;
+  day_counter++;
+  if (day_counter >= next_day) {
+    next_day = rand() % 20;
+    day_counter = 0;
+    if (DAY) {
+      DAY = 0;
+    } else {
+      DAY = 1;
+    }
+  }
+  if (day_counter)
   if (spawn_counter % 20 == 0) {
     int ran = rand() % 4;
     switch(ran) {
@@ -208,6 +221,7 @@ void update_game_state() {
 }
 
 void game_init() {
+  next_day = rand() % 20;
   //moon
   moon.sprite.x = 100;
   moon.sprite.y = 5;

@@ -18,3 +18,4 @@ void jump_dino(Dino *dino);
 extern int GAME_STATE;
 extern int DAY;
 extern int spawn_counter;
+extern int day_counter;
