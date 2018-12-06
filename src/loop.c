@@ -15,6 +15,7 @@
 #include "game_graphics.h"
 #include "game_logic.h"
 #include "data.h"
+#include "input.h"
 void *stdout;
 
 int seed = 0;

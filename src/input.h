@@ -9,5 +9,5 @@ typedef enum Button {
   BTN2, BTN3, BTN4
 } Button;
 
-int is_pressed();
+int is_pressed(Button bnt);
 int getsw();
