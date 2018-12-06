@@ -71,6 +71,8 @@ void loop() {
   } else if (game_state == GAME) {
     update_game_state();
     update_graphics();
+    PORTE &= ~0xFF;
+    PORTE |= score;
   }
   quicksleep(150000);
 }
