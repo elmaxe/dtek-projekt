@@ -20,7 +20,11 @@ void game_init();
 void update_game_state();
 void jump_dino(Dino *dino);
 
-extern int GAME_STATE;
+typedef enum GameState {
+  START, MENU, GAME, GAMEOVER
+} GameState;
+
+extern GameState game_state;
 extern int DAY;
 extern unsigned int spawn_counter;
 extern unsigned int day_counter;

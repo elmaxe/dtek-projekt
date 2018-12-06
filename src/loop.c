@@ -52,14 +52,14 @@ void init()
 
 /* This function is called repetitively from the main program */
 void loop() {
-  if (GAME_STATE == 0) {
+  if (game_state == START) {
     seed++;
     add_screen_graphic_to_pixelbuffer(menu_graphic);
     pixelbuffer_to_buffer();
     clear_pixelbuffer();
     display_buffer();
     if (is_pressed(BTN2)) {
-      GAME_STATE = 1;
+      game_state = GAME;
       srand(seed);
     }
     /*
@@ -68,7 +68,7 @@ void loop() {
     display_string(2, "and A.Elmarsson");
     display_string(3, "Press any button");
     display_textbuffer();*/
-  } else if (GAME_STATE == 1){
+  } else if (game_state == GAME) {
     update_game_state();
     update_graphics();
   }

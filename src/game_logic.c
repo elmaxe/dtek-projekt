@@ -16,13 +16,15 @@
 #include "loop.h"
 void *stdout;
 
-int GAME_STATE = 0;
+GameState game_state = START;
 int DAY = 0;
 unsigned int spawn_counter = 0;
 unsigned int day_counter = 0;
 unsigned int next_day;
 //Score that updates in remove_obstacles
 unsigned int score;
+// Highscore array
+unsigned int high_score[4];
 
 int round(float f) {
   int floor = (int)f;
@@ -177,7 +179,7 @@ void collision(Dino d, Obstacle o) {
         d_pixel_y = o_pixel_y_pos - d.sprite.y;
         if (0 <= d_pixel_x && d_pixel_x < DINO_WIDTH && 0 <= d_pixel_y && d_pixel_y < DINO_HEIGHT) {
           if ((*d.sprite.graphic)[d_pixel_x][d_pixel_y]) {
-            GAME_STATE = 0;
+            game_state = START;
             return;
           }
         }
@@ -221,6 +223,10 @@ void update_game_state() {
         break;
     }
   }
+}
+
+void game_reset() {
+
 }
 
 void game_init() {
