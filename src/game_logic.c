@@ -148,10 +148,9 @@ void add_obstacle(ObstacleType type, int x_speed) {
 void remove_obstacles() {
   int i;
   for (i = 0; i < MAX_OBSTACLES; i++) {
-    Obstacle *o = &obstacles.obstacles[i];
-    if ((*o).on_screen) {
-      if ((*o).sprite.x < 0 - (*o).sprite.width) {
-        (*o).on_screen = 0;
+    if (obstacles.obstacles[i].on_screen) {
+      if (obstacles.obstacles[i].sprite.x < 0 - obstacles.obstacles[i].sprite.width) {
+        obstacles.obstacles[i].on_screen = 0;
       }
     }
   }
