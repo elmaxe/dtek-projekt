@@ -23,6 +23,7 @@ extern uint8_t pixelbuffer[128][32];
 extern uint8_t buffer[4][128];
 
 extern uint8_t bird_graphic[16][16];
+extern uint8_t bird_graphic_2[16][16];
 extern uint8_t dino_graphic[16][16];
 extern uint8_t dino_graphic_duck[16][16];
 extern uint8_t cactus_graphic[16][16];

@@ -28,16 +28,19 @@ typedef struct Dino {
   float y_accel;
 } Dino;
 
+typedef enum ObstacleType {
+  BIRD, CACTUS
+} ObstacleType;
+
 //Cacti, birds etc.
 typedef struct Obstacle {
   Sprite sprite;
   int x_speed;
   uint8_t on_screen;
+  int frame_counter;
+  ObstacleType type;
+  int frame;
 } Obstacle;
-
-typedef enum ObstacleType {
-  BIRD, CACTUS
-} ObstacleType;
 
 typedef struct Ground {
   int x, y;

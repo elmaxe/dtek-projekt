@@ -70,6 +70,20 @@ void move_dino(Dino *dino) {
 
 void move_obstacle(Obstacle *obs) {
   obs->sprite.x += obs->x_speed;
+  obs->frame_counter++;
+  if (obs->frame_counter >= 10 && obs->type == BIRD) {
+    obs->frame_counter = 0;
+    switch(obs->frame) {
+      case 0:
+        obs->sprite.graphic = &bird_graphic_2;
+        obs->frame = 1;
+        break;
+      case 1:
+      obs->sprite.graphic = &bird_graphic;
+      obs->frame = 0;
+      break;
+    }
+  }
 }
 
 void move_ground(Ground *gr) {
@@ -82,6 +96,8 @@ void init_obstacle(Obstacle *obs, int x_speed){
   obs->x_speed = x_speed;
   obs->on_screen = 1;
   obs->sprite.x = SCREEN_WIDTH - 1;
+  obs->frame_counter = 0;
+  obs->frame = 0;
 }
 
 void init_cactus(Obstacle *obs, int x_speed) {
@@ -90,6 +106,7 @@ void init_cactus(Obstacle *obs, int x_speed) {
   obs->sprite.y = SCREEN_HEIGHT - 1 - CACTUS_HEIGHT;
   obs->sprite.width = CACTUS_WIDTH;
   obs->sprite.height = CACTUS_HEIGHT;
+  obs->type = CACTUS;
 }
 
 void init_bird(Obstacle *obs, int x_speed) {
@@ -98,6 +115,7 @@ void init_bird(Obstacle *obs, int x_speed) {
   obs->sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - BIRD_HEIGHT*2;
   obs->sprite.width = BIRD_WIDTH;
   obs->sprite.height = BIRD_HEIGHT;
+  obs->type = BIRD;
 }
 
 void add_obstacle(ObstacleType type, int x_speed) {
