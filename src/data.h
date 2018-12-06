@@ -31,4 +31,3 @@ extern uint8_t ground_graphic[128][4];
 extern uint8_t moon_graphic[16][16];
 extern uint8_t menu_graphic[128][32];
 extern uint8_t gameover_graphic[128][32];
-extern uint8_t menutest2_graphic[128][32];
