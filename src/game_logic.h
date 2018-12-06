@@ -2,7 +2,7 @@
 #define DINO_BASE_SPEED -3.0
 #define DINO_JUMP_ACCEL 0.17
 #define DINO_REG_ACCEL 0.25
-#define DINO_DUCK_ACCEL 0.31
+#define DINO_DUCK_ACCEL 0.5
 #define BIRD_SWITCH_FRAME 10
 #define DAY_NIGHT_CYCLE 1000
 #define SPAWN_COUNTER_TIME 40
@@ -22,5 +22,5 @@ void jump_dino(Dino *dino);
 
 extern int GAME_STATE;
 extern int DAY;
-extern int spawn_counter;
-extern int day_counter;
+extern unsigned int spawn_counter;
+extern unsigned int day_counter;

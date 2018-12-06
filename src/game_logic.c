@@ -18,9 +18,9 @@ void *stdout;
 
 int GAME_STATE = 0;
 int DAY = 0;
-int spawn_counter = 0;
-int day_counter = 0;
-int next_day;
+unsigned int spawn_counter = 0;
+unsigned int day_counter = 0;
+unsigned int next_day;
 
 int round(float f) {
   int floor = (int)f;
