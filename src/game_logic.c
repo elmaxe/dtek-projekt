@@ -192,6 +192,7 @@ void update_game_state() {
       collision(dino, obstacles.obstacles[i]);
     }
   }
+  remove_obstacles();
   spawn_counter++;
   if (spawn_counter % 20 == 0) {
     int ran = rand() % 4;
