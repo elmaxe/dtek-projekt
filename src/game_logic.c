@@ -151,7 +151,7 @@ void remove_obstacles() {
   int i;
   for (i = 0; i < MAX_OBSTACLES; i++) {
     if (obstacles.obstacles[i].on_screen) {
-      if (obstacles.obstacles[i].sprite.x < 0 - obstacles.obstacles[i].sprite.width) {
+      if (obstacles.obstacles[i].sprite.x + obstacles.obstacles[i].sprite.width < 0) {
         obstacles.obstacles[i].on_screen = 0;
       }
     }
