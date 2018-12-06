@@ -49,7 +49,29 @@ void jump_dino(Dino *dino) {
   }
 }
 
+void dino_anim(Dino *dino, int state) {
+  if (dino->frame_counter > DINO_RUN_ANIM_SPEED) {
+    dino->frame_counter = 0;
+    if (dino->frame == 0) {
+      dino->frame = 1;
+      if (state == 0) {
+        dino->sprite.graphic = &dino_graphic_2;
+        return;
+      }
+      dino->sprite.graphic = &dino_graphic_duck_2;
+    } else {
+      dino->frame = 0;
+      if (state == 0) {
+        dino->sprite.graphic = &dino_graphic;
+        return;
+      }
+      dino->sprite.graphic = &dino_graphic_duck;
+    }
+  }
+}
+
 void move_dino(Dino *dino) {
+  dino->frame_counter++;
   // If in jump and jump button not pressed, high down accel.
   if (round(dino->y_pos) != DINO_BASE_POS) {
     // If duck button pressed even higher down accel.
@@ -68,9 +90,11 @@ void move_dino(Dino *dino) {
   }
   // If duck button pressed point graphic to duck graphic
   if (is_pressed(BTN3)) {
-    dino->sprite.graphic = &dino_graphic_duck;
+    //dino->sprite.graphic = &dino_graphic_duck;
+    dino_anim(dino, 1);
   } else {
-    dino->sprite.graphic = &dino_graphic;
+    //dino->sprite.graphic = &dino_graphic;
+    dino_anim(dino, 0);
   }
 
   dino->y_pos += dino->y_speed;
@@ -204,6 +228,7 @@ void update_game_state() {
   remove_obstacles();
   spawn_counter++;
   day_counter++;
+  //Check if we should switch to day/night
   if (day_counter >= next_day) {
     next_day = rand() % DAY_NIGHT_CYCLE;
     day_counter = 0;
@@ -213,6 +238,7 @@ void update_game_state() {
       DAY = 1;
     }
   }
+  //Spawn obstacles
   if (spawn_counter % SPAWN_COUNTER_TIME == 0) {
     int ran = rand() % 4;
     switch(ran) {
@@ -256,6 +282,8 @@ void game_init() {
   dino.y_speed = 0;
   dino.y_accel = 0;
   dino.y_pos = (float)DINO_BASE_POS;
+  dino.frame = 0;
+  dino.frame_counter = 0;
   //Set up ground
   ground.x = 0;
   ground.y = SCREEN_HEIGHT - GROUND_HEIGHT;

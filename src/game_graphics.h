@@ -26,6 +26,8 @@ typedef struct Dino {
   float y_pos;
   float y_speed;
   float y_accel;
+  int frame;
+  int frame_counter;
 } Dino;
 
 typedef enum ObstacleType {

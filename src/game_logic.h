@@ -9,6 +9,7 @@
 #define BIRD_SPEED -3
 #define CACTUS_SPEED -2
 #define GROUND_SPEED -2
+#define DINO_RUN_ANIM_SPEED 3
 
 //Temporary code TODO: Remove
 Dino dino;
