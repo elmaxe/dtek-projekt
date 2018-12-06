@@ -73,6 +73,11 @@ void loop() {
     update_graphics();
     PORTE &= ~0xFF;
     PORTE |= score;
+  } else if (game_state == GAMEOVER) {
+    add_screen_graphic_to_pixelbuffer(gameover_graphic);
+    pixelbuffer_to_buffer();
+    clear_pixelbuffer();
+    display_buffer();
   }
   quicksleep(150000);
 }
