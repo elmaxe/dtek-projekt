@@ -1,3 +1,10 @@
+/* game_logic.h
+
+   Written 2018-12-06 by M. Wesslén and A. Elmarsson.
+
+   For copyright and licensing, see file COPYING
+*/
+
 #define DINO_BASE_POS 16
 #define DINO_BASE_SPEED -3.0
 #define DINO_JUMP_ACCEL 0.17

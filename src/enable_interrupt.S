@@ -1,6 +1,6 @@
 	# enable_interrupt.S
 	# Based on a file written 2015-2017 by F Lundevall.
-	# Edited 2018-11- by M. Wesslén and A. Elmarsson.
+	# Edited 2018-12-06 by M. Wesslén and A. Elmarsson.
 	# For copyright and licensing, see file COPYING.
 	# The macros PUSH and POP are in the public domain.
 

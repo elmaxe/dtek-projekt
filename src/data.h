@@ -1,3 +1,10 @@
+/* data.h
+
+   Written 2018-12-06 by M. Wesslén and A. Elmarsson.
+
+   For copyright and licensing, see file COPYING
+*/
+
 #define CACTUS_HEIGHT 11
 #define CACTUS_WIDTH 6
 

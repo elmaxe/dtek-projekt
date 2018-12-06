@@ -2,7 +2,7 @@
 
    This file was based on another file written by F. Lundevall.
 
-   Edited 2018-11- by M. Wesslén and A. Elmarsson.
+   Edited 2018-12-06 by M. Wesslén and A. Elmarsson.
 
    For copyright and licensing, see file COPYING
 */
