@@ -18,6 +18,7 @@ void *stdout;
 
 int GAME_STATE = 0;
 int DAY = 1;
+int spawn_counter = 0;
 
 int round(float f) {
   int floor = (int)f;
@@ -50,6 +51,11 @@ void move_dino(Dino *dino) {
     if (round(dino->y_pos) != DINO_BASE_POS) {
       dino->y_accel = DINO_ACCEL_LOW;
     }
+  }
+  if ((getbtns() & 0x2) >> 1) {
+    dino->sprite.graphic = &dino_graphic_duck;
+  } else {
+    dino->sprite.graphic = &dino_graphic;
   }
   dino->y_pos += dino->y_speed;
   dino->y_speed += dino->y_accel;
@@ -159,6 +165,18 @@ void update_game_state() {
       collision(dino, obstacles.obstacles[i]);
     }
   }
+  spawn_counter++;
+  if (spawn_counter % 20 == 0) {
+    int ran = rand() % 4;
+    switch(ran) {
+      case 0:
+        add_obstacle(CACTUS, -1);
+        break;
+      case 1:
+        add_obstacle(BIRD, -1);
+        break;
+    }
+  }
 }
 
 void game_init() {
@@ -185,9 +203,4 @@ void game_init() {
   ground.x_speed = -1;
   ground.graphic = &ground_graphic;
   //Set up obstacles
-  srand(seed);
-  if (rand() % 2 == 0)
-    add_obstacle(CACTUS, -1);
-  else
-    add_obstacle(BIRD, -1);
 }

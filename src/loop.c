@@ -68,10 +68,9 @@ void loop() {
     update_graphics();
   }
 
-  if ((getbtns() & 0x2) >> 1) {
+  if (getbtns() & 0x1) {
     GAME_STATE = 1;
-  } else if ((getbtns() & 0x4) >> 2) {
-  } else if (getbtns() & 0x1) {
+    srand(seed);
   }
   quicksleep(150000);
 }
