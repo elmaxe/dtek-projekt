@@ -122,8 +122,10 @@ void init_cactus(Obstacle *obs, int x_speed) {
 
 void init_bird(Obstacle *obs, int x_speed) {
   init_obstacle(obs, x_speed);
+  int ran_height = 1;
+  ran_height = (rand() % 3) + 1;
   obs->sprite.graphic = &bird_graphic;
-  obs->sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - BIRD_HEIGHT*2;
+  obs->sprite.y = SCREEN_HEIGHT - GROUND_HEIGHT - BIRD_HEIGHT*ran_height;
   obs->sprite.width = BIRD_WIDTH;
   obs->sprite.height = BIRD_HEIGHT;
   obs->type = BIRD;
