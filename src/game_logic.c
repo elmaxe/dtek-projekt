@@ -23,9 +23,9 @@ unsigned int spawn_counter = 0;
 unsigned int day_counter = 0;
 unsigned int next_day;
 //Score that updates in remove_obstacles
-unsigned uint8_t score;
+uint8_t score;
 // Highscore array
-unsigned uint8_t high_score[4];
+uint8_t high_score[4];
 
 int round(float f) {
   int floor = (int)f;
@@ -251,7 +251,7 @@ void update_game_state() {
 }
 
 void add_high_score() {
-  unsigned uint8_t tmp;
+  uint8_t tmp;
   int i, j;
   for (i = 0; i < NUM_PAGES; i++) {
     if (score > high_score[i]) {
