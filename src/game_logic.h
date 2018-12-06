@@ -25,6 +25,5 @@ typedef enum GameState {
 } GameState;
 
 extern GameState game_state;
+extern unsigned char score;
 extern int DAY;
-extern unsigned int spawn_counter;
-extern unsigned int day_counter;

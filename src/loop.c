@@ -71,6 +71,8 @@ void loop() {
   } else if (game_state == GAME) {
     update_game_state();
     update_graphics();
+    PORTE &= ~0xFF;
+    PORTE |= score;
   } else if (game_state == GAMEOVER) {
     add_screen_graphic_to_pixelbuffer(gameover_graphic);
     pixelbuffer_to_buffer();

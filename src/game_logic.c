@@ -22,9 +22,9 @@ unsigned int spawn_counter = 0;
 unsigned int day_counter = 0;
 unsigned int next_day;
 //Score that updates in remove_obstacles
-unsigned int score;
+unsigned char score;
 // Highscore array
-unsigned int high_score[4];
+unsigned char high_score[4];
 
 int round(float f) {
   int floor = (int)f;
@@ -225,8 +225,15 @@ void update_game_state() {
   }
 }
 
-void game_reset() {
-
+void add_highcore() {
+  int i;
+  for (i = NUM_PAGES - 2; i >= 0 ; i--) {
+    if (i > 0) {
+      high_score[i + 1] = high_score[i];
+    } else {
+      high_score[i] = score;
+    }
+  }
 }
 
 void game_init() {
@@ -255,5 +262,13 @@ void game_init() {
   ground.height = GROUND_HEIGHT;
   ground.x_speed = GROUND_SPEED;
   ground.graphic = &ground_graphic;
-  //Set up obstacles
+}
+
+void game_reset() {
+  int i;
+  for (i = 0; i < MAX_OBSTACLES; i++) {
+    obstacles.obstacles[i].on_screen = 0;
+  }
+  add_highcore();
+  game_init();
 }
