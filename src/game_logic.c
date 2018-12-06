@@ -80,7 +80,7 @@ void move_dino(Dino *dino) {
 void move_obstacle(Obstacle *obs) {
   obs->sprite.x += obs->x_speed;
   obs->frame_counter++;
-  if (obs->frame_counter >= 10 && obs->type == BIRD) {
+  if (obs->frame_counter >= BIRD_SWITCH_FRAME && obs->type == BIRD) {
     obs->frame_counter = 0;
     switch(obs->frame) {
       case 0:
