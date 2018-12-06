@@ -6,6 +6,9 @@
 #define BIRD_SWITCH_FRAME 10
 #define DAY_NIGHT_CYCLE 1000
 #define SPAWN_COUNTER_TIME 40
+#define BIRD_SPEED -3
+#define CACTUS_SPEED -2
+#define GROUND_SPEED -2
 
 //Temporary code TODO: Remove
 Dino dino;

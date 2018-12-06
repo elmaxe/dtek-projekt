@@ -112,7 +112,7 @@ void init_obstacle(Obstacle *obs, int x_speed){
 }
 
 void init_cactus(Obstacle *obs, int x_speed) {
-  init_obstacle(obs, x_speed);
+  init_obstacle(obs, CACTUS_SPEED);
   obs->sprite.graphic = &cactus_graphic;
   obs->sprite.y = SCREEN_HEIGHT - 1 - CACTUS_HEIGHT;
   obs->sprite.width = CACTUS_WIDTH;
@@ -121,7 +121,7 @@ void init_cactus(Obstacle *obs, int x_speed) {
 }
 
 void init_bird(Obstacle *obs, int x_speed) {
-  init_obstacle(obs, x_speed);
+  init_obstacle(obs, BIRD_SPEED);
   int ran_height = 1;
   ran_height = (rand() % 3) + 1;
   obs->sprite.graphic = &bird_graphic;
@@ -242,7 +242,7 @@ void game_init() {
   ground.y = SCREEN_HEIGHT - GROUND_HEIGHT;
   ground.width = SCREEN_WIDTH;
   ground.height = GROUND_HEIGHT;
-  ground.x_speed = -1;
+  ground.x_speed = GROUND_SPEED;
   ground.graphic = &ground_graphic;
   //Set up obstacles
 }
