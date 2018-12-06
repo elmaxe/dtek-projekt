@@ -22,3 +22,14 @@ int getbtns(void){
   input &= 0x7;
   return input;
 }
+
+int is_pressed(Button btn) {
+  switch (btn) {
+    case BTN2:
+      return getbtns() & 0x1;
+    case BTN3:
+      return (getbtns() & 0x2) >> 1;
+    case BTN4:
+      return (getbtns() & 0x4) >> 2;
+  }
+}

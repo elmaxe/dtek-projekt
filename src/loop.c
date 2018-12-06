@@ -57,20 +57,19 @@ void loop() {
     pixelbuffer_to_buffer();
     clear_pixelbuffer();
     display_buffer();
+    if (is_pressed(BTN2)) {
+      GAME_STATE = 1;
+      srand(seed);
+    }
     /*
-    display_string(0, "Dinosaur Run");
+    display_string(0, "Dino Run");
     display_string(1, "by M.Wesslen");
     display_string(2, "and A.Elmarsson");
     display_string(3, "Press any button");
     display_textbuffer();*/
-  } else {
+  } else if (GAME_STATE == 2){
     update_game_state();
     update_graphics();
-  }
-
-  if (getbtns() & 0x1) {
-    GAME_STATE = 1;
-    srand(seed);
   }
   quicksleep(150000);
 }

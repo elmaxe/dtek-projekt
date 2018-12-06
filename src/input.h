@@ -5,5 +5,9 @@
    For copyright and licensing, see file COPYING
 */
 
-int getbtns();
+typedef enum Button {
+  BTN2, BTN3, BTN4
+} Button;
+
+int is_pressed();
 int getsw();

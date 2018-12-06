@@ -48,21 +48,21 @@ void move_dino(Dino *dino) {
   // If in jump and jump button not pressed, high down accel.
   if (round(dino->y_pos) != DINO_BASE_POS) {
     // If duck button pressed even higher down accel.
-    if ((getbtns() & 0x2) >> 1) {
+    if ((is_pressed(BTN3)) >> 1) {
       dino->y_accel = DINO_DUCK_ACCEL;
     } else {
       dino->y_accel = DINO_REG_ACCEL;
     }
   }
   // If jump button pressed, low down accel.
-  if ((getbtns() & 0x4) >> 2) {
+  if ((is_pressed(BTN4) & 0x4) >> 2) {
     jump_dino(dino);
     if (round(dino->y_pos) != DINO_BASE_POS) {
       dino->y_accel = DINO_JUMP_ACCEL;
     }
   }
   // If duck button pressed point graphic to duck graphic
-  if ((getbtns() & 0x2) >> 1) {
+  if ((is_pressed(BTN3) & 0x2) >> 1) {
     dino->sprite.graphic = &dino_graphic_duck;
   } else {
     dino->sprite.graphic = &dino_graphic;
