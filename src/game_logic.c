@@ -21,6 +21,8 @@ int DAY = 0;
 unsigned int spawn_counter = 0;
 unsigned int day_counter = 0;
 unsigned int next_day;
+//Score that updates in remove_obstacles
+unsigned int score;
 
 int round(float f) {
   int floor = (int)f;
@@ -155,6 +157,7 @@ void remove_obstacles() {
     if (obstacles.obstacles[i].on_screen) {
       if (obstacles.obstacles[i].sprite.x + obstacles.obstacles[i].sprite.width < 0) {
         obstacles.obstacles[i].on_screen = 0;
+        score++;
       }
     }
   }
@@ -222,6 +225,8 @@ void update_game_state() {
 
 void game_init() {
   next_day = rand() % DAY_NIGHT_CYCLE;
+  //Score that updates in remove_obstacles
+  score = 0;
   //moon
   moon.sprite.x = 100;
   moon.sprite.y = 5;
