@@ -197,7 +197,7 @@ void update_game_state() {
   spawn_counter++;
   day_counter++;
   if (day_counter >= next_day) {
-    next_day = rand() % 20;
+    next_day = rand() % DAY_NIGHT_CYCLE;
     day_counter = 0;
     if (DAY) {
       DAY = 0;
@@ -205,8 +205,7 @@ void update_game_state() {
       DAY = 1;
     }
   }
-  if (day_counter)
-  if (spawn_counter % 20 == 0) {
+  if (spawn_counter % SPAWN_COUNTER_TIME == 0) {
     int ran = rand() % 4;
     switch(ran) {
       case 0:
@@ -220,7 +219,7 @@ void update_game_state() {
 }
 
 void game_init() {
-  next_day = rand() % 20;
+  next_day = rand() % DAY_NIGHT_CYCLE;
   //moon
   moon.sprite.x = 100;
   moon.sprite.y = 5;

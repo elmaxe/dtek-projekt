@@ -4,6 +4,8 @@
 #define DINO_REG_ACCEL 0.25
 #define DINO_DUCK_ACCEL 0.31
 #define BIRD_SWITCH_FRAME 10
+#define DAY_NIGHT_CYCLE 1000
+#define SPAWN_COUNTER_TIME 40
 
 //Temporary code TODO: Remove
 Dino dino;
