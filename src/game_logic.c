@@ -130,9 +130,7 @@ void move_ground(Ground *gr) {
   gr->x += gr->x_speed;
 }
 
-void init_dino(Dino *dino);
-
-void init_obstacle(Obstacle *obs, int x_speed){
+void init_obstacle(Obstacle *obs, int x_speed) {
   obs->x_speed = x_speed;
   obs->on_screen = 1;
   obs->sprite.x = SCREEN_WIDTH - 1;

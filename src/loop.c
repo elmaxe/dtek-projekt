@@ -64,12 +64,6 @@ void loop() {
       game_state = MENU;
       srand(seed);
     }
-    /*
-    display_string(0, "Dino Run");
-    display_string(1, "by M.Wesslen");
-    display_string(2, "and A.Elmarsson");
-    display_string(3, "Press any button");
-    display_textbuffer();*/
   } else if (game_state == GAME) {
     update_game_state();
     update_graphics();
