@@ -68,7 +68,7 @@ void loop() {
     display_string(2, "and A.Elmarsson");
     display_string(3, "Press any button");
     display_textbuffer();*/
-  } else if (GAME_STATE == 2){
+  } else if (GAME_STATE == 1){
     update_game_state();
     update_graphics();
   }
