@@ -22,11 +22,6 @@ char * itoaconv( int num );
 
 int seed = 0;
 
-/* Interrupt Service Routine */
-void user_isr() {
-  IFSCLR(0) = 0x100;
-}
-
 /* Lab-specific initialization goes here */
 void init()
 {
@@ -36,17 +31,6 @@ void init()
 
   // Init sws and btns
   TRISDSET = 0x7F<<5;
-
-  // Init timer
-  T2CON = 0x0; // Clear control register
-  T2CONSET = (0x7 << 4); // Set prescale
-  TMR2 = 0x0; // Clear timer register
-  PR2 = 0x135A; // Set period register
-  IFSCLR(0) = 0x100; // Clear timeout event flag
-  IECSET(0) = 0x100; // Enable timer interrupts
-  IPCSET(2) = 0x1F; // Set priority
-  T2CONSET = 0x8000; // Start timer
-  enable_interrupt();
 
   game_init();
   return;
