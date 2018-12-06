@@ -61,8 +61,10 @@ void update_graphics() {
   add_graphic_to_pixelbuffer(dino.sprite);
   add_ground_to_pixelbuffer(ground);
   int i;
-  for (i = 0; i < obstacles.num_obstacles; i++) {
-    add_graphic_to_pixelbuffer(obstacles.obstacles[i].sprite);
+  for (i = 0; i < MAX_OBSTACLES; i++) {
+    if (obstacles.obstacles[i].on_screen) {
+      add_graphic_to_pixelbuffer(obstacles.obstacles[i].sprite);
+    }
   }
   if (DAY) {
     invert_pixelbuffer();
